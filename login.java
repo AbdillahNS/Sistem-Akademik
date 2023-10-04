@@ -4,18 +4,18 @@ import java.util.Scanner;
         public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        int angka;
-        System.out.println("Masukkan username: ");
-        angka = sc.nextInt();
+        String nim;
+        System.out.print("Masukkan username: ");
+        nim = sc.next();
 
-        switch (angka) {
-            case 234172001:
+        switch (nim) {
+            case "2341720018":
                 System.out.println("Selamat datang Abdillah noer said");
                 break;
-            case 234172017:
+            case "234172017":
                 System.out.println("Selamat datang Reika amalia syahputri");
                 break;
-            case 234172010:
+            case "234172010":
                 System.out.println("Selamat datang Saka nabil");
                 break;
 
