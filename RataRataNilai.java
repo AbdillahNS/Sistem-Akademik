@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class RataRataNilai {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
         String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
         double[] nilaiMataKuliah = new double[mataKuliah.length];
@@ -10,7 +10,7 @@ public class RataRataNilai {
         
         for (int i = 0; i < mataKuliah.length; i++) {
             System.out.print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
-            nilaiMataKuliah[i] = input.nextDouble();
+            nilaiMataKuliah[i] = scanner.nextDouble();
             totalNilai += nilaiMataKuliah[i];
         }
         
