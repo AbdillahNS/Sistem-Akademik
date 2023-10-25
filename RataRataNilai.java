@@ -15,7 +15,8 @@ public class RataRataNilai {
         }
         
         double rataRata = totalNilai / mataKuliah.length;
-        System.out.println("Nilai Rata-Rata Mahasiswa adalah\t: " + rataRata);
+        double rataRataBulat = Math.round(rataRata);
+        System.out.println("Nilai Rata-Rata Mahasiswa adalah\t: " + rataRataBulat);
 
         if (rataRata > 80 && rataRata <= 100) {
             System.out.println("Nilai A dengan kualifikasi sangat baik");
