@@ -4,7 +4,7 @@ public class RataRataNilai {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
-        String[] mataKuliah = {"MATDAS", "DASPRO", "BING", "KTI", "CTPS", "PANCASILA", "K3"};
+        String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
         double[] nilaiMataKuliah = new double[mataKuliah.length];
         double totalNilai = 0;
         
