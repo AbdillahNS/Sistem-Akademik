@@ -14,10 +14,11 @@ public class HasilAkhirSistemAkademik6 {
         int percobaan = 3; // Jumlah percobaan maksimal
         boolean berhasilLogin = false;
 
+        System.out.println("===============================");
+        System.out.println("\tSIAKAD POLINEMA");
+        System.out.println("===============================");
+
         do {
-            System.out.println("===============================");
-            System.out.println("\tSIAKAD POLINEMA");
-            System.out.println("===============================");
             System.out.print("Masukkan username: ");
             String usernameInput = scanner.nextLine();
             System.out.print("Masukkan password: ");
@@ -50,9 +51,9 @@ public class HasilAkhirSistemAkademik6 {
             // Tempatkan kode program setelah login berhasil di sini
             String fitur;
         do {    
-            System.out.println("================================");
+            System.out.println("=================================");
             System.out.println("\tSilakan pilih menu");
-            System.out.println("================================");
+            System.out.println("=================================");
             System.out.println("1. General");
             System.out.println("2. Akademik");
             System.out.println("3. Message");
