@@ -15,22 +15,24 @@ public class HasilAkhirSistemAkademik6 {
         boolean berhasilLogin = false;
 
         do {
+            System.out.println("===============================");
+            System.out.println("\tSIAKAD POLINEMA");
+            System.out.println("===============================");
             System.out.print("Masukkan username: ");
             String usernameInput = scanner.nextLine();
-
             System.out.print("Masukkan password: ");
             String passwordInput = scanner.nextLine();
 
             if (usernameInput.equals(usernameAbdillah) && passwordInput.equals(passwordAbdillah)) {
-                System.out.println("Selamat datang Abdillah Noer Said");
+                System.out.println("\nSelamat datang Abdillah Noer Said\n");
                 berhasilLogin = true;
                 break;
             }else if (usernameInput.equals(usernameReika) && passwordInput.equals(passwordReika)) {
-                System.out.println("Selamat datang Reika Amalia Syahputri");
+                System.out.println("\nSelamat datang Reika Amalia Syahputri\n");
                 berhasilLogin = true;
                 break;
             }else if (usernameInput.equals(usernameSaka) && passwordInput.equals(passwordSaka)) {
-                System.out.println("Selamat datang Saka Nabil");
+                System.out.println("\nSelamat datang Saka Nabil\n");
                 berhasilLogin = true;
                 break;
             } else {
@@ -48,12 +50,14 @@ public class HasilAkhirSistemAkademik6 {
             // Tempatkan kode program setelah login berhasil di sini
             String fitur;
         do {    
-            System.out.println("Silahkan pilih menu yang ingin anda access :");
+            System.out.println("================================");
+            System.out.println("\tSilakan pilih menu");
+            System.out.println("================================");
             System.out.println("1. General");
             System.out.println("2. Akademik");
             System.out.println("3. Message");
             System.out.println("4. UKT");
-            System.out.println("0. ====== Logout ======");
+            System.out.println("0. Logout");
             
             System.out.println("Pilih menu sesuai angka :");
             fitur = scanner.next();
@@ -62,9 +66,9 @@ public class HasilAkhirSistemAkademik6 {
                 case "1":
                     String biodata;                    
                 do {    
-                    System.out.println("-------------------");
-                    System.out.println("|     GANERAL     |");
-                    System.out.println("-------------------");
+                    System.out.println("=======================");
+                    System.out.println("\tGENERAL");
+                    System.out.println("=======================");
                     System.out.println("1. Biodata");
                     System.out.println("0. Kembali");
 
@@ -77,7 +81,7 @@ public class HasilAkhirSistemAkademik6 {
                         // Isi e 
                         break;
                         case "0":
-                        System.out.println("Anda telah berhasil kembali");
+                        System.out.println("\nAnda telah berhasil kembali\n");
                         break;
                         default:
                         System.out.println("Maaf, Angka yang anda masukkan salah");
@@ -85,12 +89,12 @@ public class HasilAkhirSistemAkademik6 {
                 } while (!biodata.equals("0"));
                 break;
                 
-                case "2": // Code fitur Akademik
+                case "2": // Code program fitur Akademik
                 String akademik;                   
                 do {
-                    System.out.println("-------------------");
-                    System.out.println("|     AKADEMIK    |");
-                    System.out.println("-------------------");
+                    System.out.println("=========================");
+                    System.out.println("\tAKADEMIK");
+                    System.out.println("=========================");
                     System.out.println("1. Jadwal Kuliah");
                     System.out.println("2. KRS");
                     System.out.println("3. Nilai Mahasiswa");
@@ -102,44 +106,49 @@ public class HasilAkhirSistemAkademik6 {
 
                     switch (akademik) {
                         
-                        case "1":
-                        System.out.println("===== Jadwal Kuliah =====");
+                        case "1": // Code program fitur jadwal kuliah
+                        System.out.println("==============================");
+                        System.out.println("\tJADWAL KULIAH");
+                        System.out.println("==============================");
                         String hari;
                         do {
                         System.out.println("Masukkan hari yang ingin anda lihat : (0.Untuk kembali ke menu sebelumnya) ");
                         hari = scanner.next();
                             
                             if (hari.equalsIgnoreCase("Senin")) {
-                                System.out.println("Jadwal Senin:");
+                                System.out.println("\nJadwal Senin:");
                                 System.out.println("07.00 - 09.30 : Matematika Dasar");
                                 System.out.println("11.20 - 17.10 : Praktikum Daspro");
                             } else if (hari.equalsIgnoreCase("Selasa")) {
-                                System.out.println("Jadwal Selasa:");
+                                System.out.println("\nJadwal Selasa:");
                                 System.out.println("08.40 - 12.10 : Bahasa Inggris");
                             } else if (hari.equalsIgnoreCase("Rabu")) {
-                                System.out.println("Jadwal Rabu:");
+                                System.out.println("\nJadwal Rabu:");
                                 System.out.println("09.40 - 13.40 : Teeri Daspro");
                                 System.out.println("13.40 - 17.10 : KTI");
                             } else if (hari.equalsIgnoreCase("Kamis")) {
-                                System.out.println("Jadwal Kamis:");
+                                System.out.println("\nJadwal Kamis:");
                                 System.out.println("07.00 - 10.30 : CTPS");
                                 System.out.println("10.30 - 12.10 : Pancasila");
                                 System.out.println("13.40 - 17.10 : K3");
                             } else if (hari.equalsIgnoreCase("Jumat")) {
-                                System.out.println("Jadwal Jumat:");
+                                System.out.println("\nJadwal Jumat:");
                                 System.out.println("07.00 - 09.30 : Matematika Dasar");
                             } else if (hari.equalsIgnoreCase("Sabtu") || hari.equalsIgnoreCase("Minggu")) {
-                                System.out.println("Untuk hari Sabtu dan Minggu Libur");
+                                System.out.println("\nUntuk hari Sabtu dan Minggu Libur");
+                            } else if (hari.equalsIgnoreCase("0")) {
+                                System.out.println("\nAnda telah berhasil kembali\n");
+                                break;
                             } else {
                                 System.out.println("Hari yang Anda masukkan tidak valid.");
                             }
                         } while (!hari.equals("0"));
                         break;
                         
-                        case "2":
-                        System.out.println("\t\t-------------------");
-                        System.out.println("\t\t|       KRS       |");
-                        System.out.println("\t\t-------------------");
+                        case "2": // Code program fitur KRS
+                        System.out.println("\t\t===================");
+                        System.out.println("\t\t\tKRS");
+                        System.out.println("\t\t===================");
                             
                         String[][] matkulData = {
                             {"Pancasila", "1", "2", "2"},
@@ -161,8 +170,10 @@ public class HasilAkhirSistemAkademik6 {
                         }
                         break;
                         
-                        case "3":
-                        System.out.println("===== Nilai Mahasiswa =====");
+                        case "3": // Code program fitur Nilai Mahasiswa
+                        System.out.println("==============================");
+                        System.out.println("\tNILAI MAHASISWA");
+                        System.out.println("==============================");
                             String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
                             double[] nilaiMataKuliah = new double[mataKuliah.length];
                             double totalNilai = 0;
@@ -177,6 +188,7 @@ public class HasilAkhirSistemAkademik6 {
                             double rataRataBulat = Math.round(rataRata);
                             System.out.println("Nilai Rata-Rata Mahasiswa adalah\t: " + rataRataBulat);
 
+                            // Indeks Rata-rata nilai
                             if (rataRata > 80 && rataRata <= 100) {
                                 System.out.println("Nilai A dengan kualifikasi sangat baik");
                             } else if (rataRata > 73 && rataRata <= 80) {
@@ -194,7 +206,7 @@ public class HasilAkhirSistemAkademik6 {
                             }
                         break;
                         
-                        case "4":
+                        case "4": 
                         System.out.println("Presesnsi : ");
                         break;
                         
