@@ -91,7 +91,7 @@ public class HasilAkhirSistemAkademik6 {
                 } while (!biodata.equals("0"));
                 break;
                 
-                case "2":
+                case "2": // Code fitur Akademik
                 String akademik;                   
                 do {
                     System.out.println("-------------------");
