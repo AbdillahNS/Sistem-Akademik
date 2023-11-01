@@ -10,8 +10,6 @@ public class HasilAkhirSistemAkademik6 {
         String passwordReika = "2341720173";
         String usernameSaka = "2341720108";
         String passwordSaka = "2341720108";
-        String usernamecoba = "coba";
-        String passwordcoba = "1";
 
         int percobaan = 3; // Jumlah percobaan maksimal
         boolean berhasilLogin = false;
@@ -33,10 +31,6 @@ public class HasilAkhirSistemAkademik6 {
                 break;
             }else if (usernameInput.equals(usernameSaka) && passwordInput.equals(passwordSaka)) {
                 System.out.println("Selamat datang Saka Nabil");
-                berhasilLogin = true;
-                break;
-            }else if (usernameInput.equals(usernamecoba) && passwordInput.equals(passwordcoba)) {
-                System.out.println("Untuk percobaan");
                 berhasilLogin = true;
                 break;
             } else {
