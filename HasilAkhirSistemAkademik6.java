@@ -175,6 +175,7 @@ public class HasilAkhirSistemAkademik6 {
                         System.out.println("==============================");
                         System.out.println("\tNILAI MAHASISWA");
                         System.out.println("==============================");
+                            
                             String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
                             double[] nilaiMataKuliah = new double[mataKuliah.length];
                             double totalNilai = 0;
