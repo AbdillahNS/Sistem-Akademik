@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         String[][] dataLogin = {
             {"Admin", "Admin"},
@@ -24,9 +24,9 @@ public class Main {
 
         while (percobaan > 0) {
             System.out.print("Masukkan Username : ");
-            String username = scanner.nextLine();
+            String username = sc.nextLine();
             System.out.print("Masukkan Password : ");
-            String password = scanner.nextLine();
+            String password = sc.nextLine();
 
             for (String[] user : dataLogin) {
                 if (user[0].equalsIgnoreCase(username) && user[1].equalsIgnoreCase(password)) {
@@ -81,7 +81,7 @@ public class Main {
                         System.out.println("0. Logout");
 
                         System.out.print("Pilih menu sesuai angka : ");
-                        fitur = scanner.next();
+                        fitur = sc.next();
 
                         switch (fitur) {
                             case "1":
@@ -94,7 +94,7 @@ public class Main {
                                     System.out.println("0. Kembali");
 
                                     System.out.print("Pilih menu: ");
-                                    biodata = scanner.next();
+                                    biodata = sc.next();
 
                                     switch (biodata) {
                                         case "1":
@@ -123,7 +123,7 @@ public class Main {
                                     System.out.println("0. Kembali");
 
                                     System.out.print("Pilih menu: ");
-                                    akademik = scanner.next();
+                                    akademik = sc.next();
 
                                     switch (akademik) {
                                         case "1": // Code program fitur jadwal kuliah
@@ -133,7 +133,7 @@ public class Main {
                                         String hari;
                                         do {
                                         System.out.println("Masukkan hari yang ingin anda lihat : (0.Untuk kembali ke menu sebelumnya) ");
-                                        hari = scanner.next();
+                                        hari = sc.next();
                                             
                                             if (hari.equalsIgnoreCase("Senin")) {
                                                 System.out.println("\nJadwal Senin:");
@@ -201,7 +201,7 @@ public class Main {
                                             
                                             for (int i = 0; i < mataKuliah.length; i++) {
                                                 System.out.print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
-                                                nilaiMataKuliah[i] = scanner.nextDouble();
+                                                nilaiMataKuliah[i] = sc.nextDouble();
                                                 totalNilai += nilaiMataKuliah[i];
                                             }
                                             
