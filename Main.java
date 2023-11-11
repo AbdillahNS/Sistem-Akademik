@@ -7,7 +7,7 @@ public class Main {
         String[][] dataLogin = {
             {"Admin", "Admin"},
             {"Dosen", "Dosen"},
-            {"Abdillah", "2341720018"},
+            {"Abdillah","2341720018"},
             {"Reika", "2341720173"},
             {"Saka", "2341720108"},
         };
@@ -17,6 +17,7 @@ public class Main {
         boolean loginAdmin = false;
         boolean loginDosen = false;
         boolean loginMahasiswa = false;
+        int user_id = 9;
 
         System.out.println("===============================");
         System.out.println("\tSIAKAD POLINEMA");
@@ -28,19 +29,21 @@ public class Main {
             System.out.print("Masukkan Password : ");
             String password = sc.nextLine();
 
-            for (String[] user : dataLogin) {
-                if (user[0].equalsIgnoreCase(username) && user[1].equalsIgnoreCase(password)) {
+            for (int i = 0; i < dataLogin.length; i++) {
+                if (dataLogin[i][0].equalsIgnoreCase(username) && dataLogin[i][1].equalsIgnoreCase(password)) {
                     berhasilLogin = true;
-                    if (user[0].equals("Admin")) {
+                    if (dataLogin[i][0].equals("Admin")) {
                         loginAdmin = true;
                         System.out.println("Selamat datang Admin");
-                    } else if (user[0].equals("Dosen")) {
+                    } else if (dataLogin[i][0].equals("Dosen")) {
                         loginDosen = true;
                         System.out.println("Selamat datang Dosen");
                     } else {
                         loginMahasiswa = true;
-                        System.out.println("Selamat datang " + user[0]);
+                        System.out.println("Selamat datang " + dataLogin[i][0]);
                     }
+
+                    user_id = i;
                     break;
                 }
             }
@@ -99,6 +102,7 @@ public class Main {
                                     switch (biodata) {
                                         case "1":
                                             System.out.println("Biodata : ");
+                                            System.out.println(dataLogin[user_id][0]);
                                             // Isi biodata
                                             break;
                                         case "0":
