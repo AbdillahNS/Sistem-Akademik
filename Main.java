@@ -201,23 +201,50 @@ public class Main {
                                             break;
 
                                         case "3": // Code program fitur Nilai Mahasiswa
-                                            System.out.println("==============================");
-                                            System.out.println("\tNILAI MAHASISWA");
-                                            System.out.println("==============================");
+                                        System.out.println("==============================");
+                                        System.out.println("\tNILAI MAHASISWA");
+                                        System.out.println("==============================");
 
-                                            String[] mataKuliah = {"MATDAS", "DASPRO", "BING", "KTI", "CTPS", "PANCASILA", "K3"};
-                                            double[] nilaiMataKuliah = new double[mataKuliah.length];
-                                            double totalNilai = 0;
+                                        String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
+                                        double[] nilaiMataKuliah = new double[mataKuliah.length];
+                                        int[] sksMataKuliah = new int[mataKuliah.length];
+                                        double totalNilai = 0;
+                                        double totalBobot = 0;
+                                        int totalSKS = 0;
 
-                                            for (int i = 0; i < mataKuliah.length; i++) {
-                                                System.out.print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
-                                                nilaiMataKuliah[i] = sc.nextDouble();
-                                                totalNilai += nilaiMataKuliah[i];
+                                        for (int i = 0; i < mataKuliah.length; i++) {
+                                            System.out.print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
+                                            nilaiMataKuliah[i] = sc.nextDouble();
+
+                                            System.out.print("Masukkan jumlah SKS mata kuliah " + mataKuliah[i] + "\t: ");
+                                            sksMataKuliah[i] = sc.nextInt();
+
+                                            if (nilaiMataKuliah[i] > 80 && nilaiMataKuliah[i] <= 100) {
+                                                totalBobot += 4.0 * sksMataKuliah[i];
+                                            } else if (nilaiMataKuliah[i] > 73 && nilaiMataKuliah[i] <= 80) {
+                                                totalBobot += 3.5 * sksMataKuliah[i];
+                                            } else if (nilaiMataKuliah[i] > 65 && nilaiMataKuliah[i] <= 73) {
+                                                totalBobot += 3.0 * sksMataKuliah[i];
+                                            } else if (nilaiMataKuliah[i] > 60 && nilaiMataKuliah[i] <= 65) {
+                                                totalBobot += 2.5 * sksMataKuliah[i];
+                                            } else if (nilaiMataKuliah[i] > 50 && nilaiMataKuliah[i] <= 60) {
+                                                totalBobot += 2.0 * sksMataKuliah[i];
+                                            } else if (nilaiMataKuliah[i] > 39 && nilaiMataKuliah[i] <= 50) {
+                                                totalBobot += 1.5 * sksMataKuliah[i];
+                                            } else {
+                                                totalBobot += 1.0 * sksMataKuliah[i];
                                             }
 
-                                            double rataRata = totalNilai / mataKuliah.length;
-                                            double rataRataBulat = Math.round(rataRata);
-                                            System.out.println("Nilai Rata-Rata Mahasiswa adalah\t: " + rataRataBulat);
+                                            totalSKS += sksMataKuliah[i];
+                                            totalNilai += nilaiMataKuliah[i];
+                                        }
+
+                                        double rataRata = totalNilai / mataKuliah.length;
+                                        double ipk = totalBobot / totalSKS;
+
+                                        double rataRataBulat = Math.round(rataRata);
+                                        System.out.println("Nilai Rata-Rata Mahasiswa adalah\t: " + rataRataBulat);
+                                        System.out.printf("IPK (Indeks Prestasi Kumulatif)\t: %.2f%n", ipk);
 
                                             // Indeks Rata-rata nilai
                                             if (rataRata > 80 && rataRata <= 100) {
@@ -234,7 +261,7 @@ public class Main {
                                                 System.out.println("Nilai D dengan kualifikasi kurang");
                                             } else {
                                                 System.out.println("Nilai E dengan kualifikasi gagal");
-                                            }
+                                            } 
                                         break;
 
                                         case "4":
