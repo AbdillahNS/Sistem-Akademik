@@ -181,23 +181,21 @@ public class Main {
                                             System.out.println("\t\t===================");
 
                                             String[][] matkulData = {
-                                                    { "Pancasila", "1", "2", "2" },
-                                                    { "KTI", "1", "2", "4" },
-                                                    { "CTPS", "1", "2", "4" },
-                                                    { "Matdas", "1", "3", "6" },
-                                                    { "B ing", "1", "2", "4" },
-                                                    { "Daspro", "1", "2", "4" },
-                                                    { "Praktikum Daspro", "1", "3", "6" },
-                                                    { "K3", "1", "2", "4" }
+                                                    {"Pancasila", "1", "2", "2"},
+                                                    {"KTI", "1", "2", "4"},
+                                                    {"CTPS", "1", "2", "4"},
+                                                    {"Matdas", "1", "3", "6"},
+                                                    {"B ing", "1", "2", "4"},
+                                                    {"Daspro", "1", "2", "4"},
+                                                    {"Praktikum Daspro", "1", "3", "6"},
+                                                    {"K3", "1", "2", "4" }
                                             };
 
                                             System.out.println("-----------------------------------------------");
                                             System.out.println("| Matkul          |   Semester  |  SKS  | Jam |");
                                             System.out.println("-----------------------------------------------");
                                             for (String[] data : matkulData) {
-                                                System.out.printf("%-18s%-11s%-7s%-4s\n", "| " + data[0],
-                                                        "|      " + data[1], "   |   " + data[2],
-                                                        "   |  " + data[3] + "  |");
+                                                System.out.printf("%-18s%-11s%-7s%-4s\n", "| " + data[0],"|      " + data[1], "   |   " + data[2],"   |  " + data[3] + "  |");
                                                 System.out.println("-----------------------------------------------");
                                             }
                                             break;
@@ -207,14 +205,12 @@ public class Main {
                                             System.out.println("\tNILAI MAHASISWA");
                                             System.out.println("==============================");
 
-                                            String[] mataKuliah = { "MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ",
-                                                    "PANCASILA", "K3   " };
+                                            String[] mataKuliah = {"MATDAS", "DASPRO", "BING", "KTI", "CTPS", "PANCASILA", "K3"};
                                             double[] nilaiMataKuliah = new double[mataKuliah.length];
                                             double totalNilai = 0;
 
                                             for (int i = 0; i < mataKuliah.length; i++) {
-                                                System.out
-                                                        .print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
+                                                System.out.print("Masukkan nilai mata kuliah " + mataKuliah[i] + "\t: ");
                                                 nilaiMataKuliah[i] = sc.nextDouble();
                                                 totalNilai += nilaiMataKuliah[i];
                                             }
