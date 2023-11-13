@@ -7,9 +7,12 @@ public class Main {
         String[][] dataLogin = {
             {"Admin", "Admin"},
             {"Dosen", "Dosen"},
-            {"Abdillah", "2341720018"},
-            {"Reika", "2341720173"},
-            {"Saka", "2341720108"},
+            {"Abdillah", "2341720018",
+            "Abdillah Noer Said", "2341720018", "Laki-laki", "Islam", "Malang, 23-03-2005", "B", "2 dari 2 Bersaudara", "081555488066", "abdillahnoersaid@gmail.com", "Teknologi Informasi", "Teknik Informatika"},
+            {"Reika", "2341720173",
+            "Reika Amalia Syaputri", "2341720173", "Perempuan", "Islam", "Ponorogo, 29-11-2005", "B", "1 dari 2 Bersaudara", "082140874629", "reikaamalia17@gmail.com",  "Teknologi Informasi", "Teknik Informatika"},
+            {"Saka", "2341720108",
+            "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong, 12-06-2005", "A", "2 dari 2 Bersaudara", "087846242745", "sakanabil1221@gmail.com", "Teknologi Informasi", "Teknik Informatika"},
         };
 
         int percobaan = 3;
@@ -17,6 +20,7 @@ public class Main {
         boolean loginAdmin = false;
         boolean loginDosen = false;
         boolean loginMahasiswa = false;
+        int user_id = 9;
 
         System.out.println("===============================");
         System.out.println("\tSIAKAD POLINEMA");
@@ -28,19 +32,21 @@ public class Main {
             System.out.print("Masukkan Password : ");
             String password = sc.nextLine();
 
-            for (String[] user : dataLogin) {
-                if (user[0].equalsIgnoreCase(username) && user[1].equalsIgnoreCase(password)) {
+            for (int i = 0; i < dataLogin.length; i++) {
+                if (dataLogin[i][0].equalsIgnoreCase(username) && dataLogin[i][1].equalsIgnoreCase(password)) {
                     berhasilLogin = true;
-                    if (user[0].equals("Admin")) {
+                    if (dataLogin[i][0].equals("Admin")) {
                         loginAdmin = true;
                         System.out.println("Selamat datang Admin");
-                    } else if (user[0].equals("Dosen")) {
+                    } else if (dataLogin[i][0].equals("Dosen")) {
                         loginDosen = true;
                         System.out.println("Selamat datang Dosen");
                     } else {
                         loginMahasiswa = true;
-                        System.out.println("Selamat datang " + user[0]);
+                        System.out.println("Selamat datang " + dataLogin[i][0]);
                     }
+
+                    user_id = i;
                     break;
                 }
             }
@@ -98,7 +104,20 @@ public class Main {
 
                                     switch (biodata) {
                                         case "1":
-                                            System.out.println("Biodata : ");
+                                            System.out.println("\t=======================");
+                                            System.out.println("\t\tBIODATA");
+                                            System.out.println("\t=======================");
+                                            System.out.println("Nama                  : " + dataLogin[user_id][2]);
+                                            System.out.println("NIM                   : " + dataLogin[user_id][3]);
+                                            System.out.println("Jenis Kelamin         : " + dataLogin[user_id][4]);
+                                            System.out.println("Agama                 : " + dataLogin[user_id][5]);
+                                            System.out.println("Tempat, Tanggal Lahir : " + dataLogin[user_id][6]);
+                                            System.out.println("Gol. Darah            : " + dataLogin[user_id][7]);
+                                            System.out.println("Anak Ke               : " + dataLogin[user_id][8]);
+                                            System.out.println("No Telepon (HP)       : " + dataLogin[user_id][9]);
+                                            System.out.println("Email                 : " + dataLogin[user_id][10]);
+                                            System.out.println("Jurusan               : " + dataLogin[user_id][11]);
+                                            System.out.println("Program Studi         : " + dataLogin[user_id][12]);
                                             // Isi biodata
                                             break;
                                         case "0":
@@ -127,42 +146,32 @@ public class Main {
 
                                     switch (akademik) {
                                         case "1": // Code program fitur jadwal kuliah
-                                        System.out.println("==============================");
-                                        System.out.println("\tJADWAL KULIAH");
-                                        System.out.println("==============================");
-                                        String hari;
+                                        System.out.println("\t\t\t\t\t=============================");
+                                        System.out.println("\t\t\t\t\t\tJADWAL KULIAH");
+                                        System.out.println("\t\t\t\t\t=============================");
+                                        String back = "";
                                         do {
-                                        System.out.println("Masukkan hari yang ingin anda lihat : (0.Untuk kembali ke menu sebelumnya) ");
-                                        hari = sc.next();
-                                            
-                                            if (hari.equalsIgnoreCase("Senin")) {
-                                                System.out.println("\nJadwal Senin:");
-                                                System.out.println("07.00 - 09.30 : Matematika Dasar");
-                                                System.out.println("11.20 - 17.10 : Praktikum Daspro");
-                                            } else if (hari.equalsIgnoreCase("Selasa")) {
-                                                System.out.println("\nJadwal Selasa:");
-                                                System.out.println("08.40 - 12.10 : Bahasa Inggris");
-                                            } else if (hari.equalsIgnoreCase("Rabu")) {
-                                                System.out.println("\nJadwal Rabu:");
-                                                System.out.println("09.40 - 13.40 : Teeri Daspro");
-                                                System.out.println("13.40 - 17.10 : KTI");
-                                            } else if (hari.equalsIgnoreCase("Kamis")) {
-                                                System.out.println("\nJadwal Kamis:");
-                                                System.out.println("07.00 - 10.30 : CTPS");
-                                                System.out.println("10.30 - 12.10 : Pancasila");
-                                                System.out.println("13.40 - 17.10 : K3");
-                                            } else if (hari.equalsIgnoreCase("Jumat")) {
-                                                System.out.println("\nJadwal Jumat:");
-                                                System.out.println("07.00 - 09.30 : Matematika Dasar");
-                                            } else if (hari.equalsIgnoreCase("Sabtu") || hari.equalsIgnoreCase("Minggu")) {
-                                                System.out.println("\nUntuk hari Sabtu dan Minggu Libur");
-                                            } else if (hari.equalsIgnoreCase("0")) {
-                                                System.out.println("\nAnda telah berhasil kembali\n");
-                                                break;
-                                            } else {
-                                                System.out.println("Hari yang Anda masukkan tidak valid.");
+                                            String[][] jadwalMatkul = {
+                                                {"1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."},
+                                                {"2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T."},
+                                                {"3", "Selasa", "08:40 - 12:10", "RTI231005", "Bahasa Inggris", "Farida Ulfa, S.Pd., M.Pd."},
+                                                {"4", "Rabu", "09:40 - 13:40", "RTI231006", "Dasar Pemrograman", "Triana Fatmawati,S.T., M.T."},
+                                                {"5", "Rabu", "13:40 - 17:10", "RTI231002", "KTI", "Ariadi Retno Tri Hayati Ririd, S.Kom., M.Kom."},
+                                                {"6", "Kamis", "07:00 - 10:15", "RTI231003", "CTPS", "Dwi Puspitasari, S.Kom., M.Kom."},
+                                                {"7", "Kamis", "10:30 - 12:10", "RTI231001", "Pancasila", "Widaningsih, S.H., M.H."},
+                                                {"8", "Kamis", "13:40 - 17:10", "RTI231008", "K3", "Budi Harijanto, S.T., M.MKom."},
+                                                {"9", "Jumat", "07:00 - 09:15", "RTI231004", "Mattdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."}
+                                            };
+                                    
+                                            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                                            System.out.println("| No |  Hari  |      Jam      |   Kode MK   |     Mata Kuliah     |                     Dosen                     |");
+                                            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                                            for (String[] data : jadwalMatkul) {
+                                                System.out.printf("| %-2s | %-6s | %-11s | %-11s | %-19s | %-45s |\n", data[0], data[1], data[2], data[3], data[4], data[5]);
+                                                System.out.println("-------------------------------------------------------------------------------------------------------------------");
                                             }
-                                        } while (!hari.equals("0"));
+                                            break;
+                                        } while (!back.equals("0"));
                                         break;
                                         
                                         case "2": // Code program fitur KRS

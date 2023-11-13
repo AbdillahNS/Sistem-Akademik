@@ -1,6 +1,9 @@
 public class JadwalKuliah {
     public static void main(String[] args) {
 
+        System.out.println("\t\t\t\t\t=============================");
+        System.out.println("\t\t\t\t\t\tJADWAL KULIAH");
+        System.out.println("\t\t\t\t\t=============================");
         String[][] jadwalMatkul = {
             {"1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."},
             {"2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T."},
