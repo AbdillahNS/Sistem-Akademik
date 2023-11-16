@@ -8,10 +8,13 @@ public class Main {
             {"Admin", "Admin"},
             {"Dosen", "Dosen"},
             {"Abdillah", "2341720018",
+            // Biodata Abdillah
             "Abdillah Noer Said", "2341720018", "Laki-laki", "Islam", "Malang, 23-03-2005", "B", "2 dari 2 Bersaudara", "081555488066", "abdillahnoersaid@gmail.com", "Teknologi Informasi", "Teknik Informatika"},
             {"Reika", "2341720173",
+            // Biodata Reika
             "Reika Amalia Syaputri", "2341720173", "Perempuan", "Islam", "Ponorogo, 29-11-2005", "B", "1 dari 2 Bersaudara", "082140874629", "reikaamalia17@gmail.com",  "Teknologi Informasi", "Teknik Informatika"},
             {"Saka", "2341720108",
+            // Biodata Saka
             "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong, 12-06-2005", "A", "2 dari 2 Bersaudara", "087846242745", "sakanabil1221@gmail.com", "Teknologi Informasi", "Teknik Informatika"},
         };
 
@@ -22,11 +25,17 @@ public class Main {
         boolean loginMahasiswa = false;
         int user_id = 9;
 
-        System.out.println("===============================");
-        System.out.println("\tSIAKAD POLINEMA");
-        System.out.println("===============================");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n" +
+                           "║    ███████╗██╗ █████╗ ██╗  ██╗ █████╗ ██████╗     ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗    ║\n" +
+                           "║    ██╔════╝██║██╔══██╗██║ ██╔╝██╔══██╗██╔══██╗    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗   ║\n" +
+                           "║    ███████╗██║███████║█████╔╝ ███████║██║  ██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║   ║\n" +
+                           "║    ╚════██║██║██╔══██║██╔═██╗ ██╔══██║██║  ██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║   ║\n" +
+                           "║    ███████║██║██║  ██║██║  ██╗██║  ██║██████╔╝    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║   ║\n" +
+                           "║    ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝     ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝   ║\n" +
+                           "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
 
         while (percobaan > 0) {
+            System.out.print("Silahkan Login \n");
             System.out.print("Masukkan Username : ");
             String username = sc.nextLine();
             System.out.print("Masukkan Password : ");
@@ -74,12 +83,13 @@ public class Main {
                     System.out.println("==============\n");
                     break;
                 } else if (loginMahasiswa) {
+                    // Isi Halaman Mahasiswa
                     String fitur;
                     do {
-                        System.out.println("=================================");
-                        System.out.println("\t HalamanMahasiswa");
-                        System.out.println("\tSilakan pilih menu");
-                        System.out.println("=================================");
+                        System.out.println("╔══════════════════════════════════════╗\n"+
+                                           "║           HALAMAN MAHASISWA          ║\n"+
+                                           "║          SILAHKAN PILIH MENU         ║\n"+
+                                           "╚══════════════════════════════════════╝");
                         System.out.println("1. General");
                         System.out.println("2. Akademik");
                         System.out.println("3. Message");
@@ -94,9 +104,9 @@ public class Main {
                             case "1":
                                 String biodata;
                                 do {
-                                    System.out.println("=======================");
-                                    System.out.println("\tGENERAL");
-                                    System.out.println("=======================");
+                                    System.out.println("╔══════════════════════════════════════╗\n"+
+                                                       "║                GENERAL               ║\n"+
+                                                       "╚══════════════════════════════════════╝");
                                     System.out.println("1. Biodata");
                                     System.out.println("0. Kembali");
 
@@ -105,9 +115,9 @@ public class Main {
 
                                     switch (biodata) {
                                         case "1":
-                                            System.out.println("\t=======================");
-                                            System.out.println("\t\tBIODATA");
-                                            System.out.println("\t=======================");
+                                            System.out.println("╔══════════════════════════════════════╗\n"+
+                                                               "║                BIODATA               ║\n"+
+                                                               "╚══════════════════════════════════════╝");
                                             System.out.println("Nama                  : " + dataLogin[user_id][2]);
                                             System.out.println("NIM                   : " + dataLogin[user_id][3]);
                                             System.out.println("Jenis Kelamin         : " + dataLogin[user_id][4]);
@@ -133,9 +143,9 @@ public class Main {
                             case "2": // Code program fitur Akademik
                                 String akademik;
                                 do {
-                                    System.out.println("=========================");
-                                    System.out.println("\tAKADEMIK");
-                                    System.out.println("=========================");
+                                    System.out.println("╔══════════════════════════════════════╗\n"+
+                                                       "║               AKADEMIK               ║\n"+
+                                                       "╚══════════════════════════════════════╝");
                                     System.out.println("1. Jadwal Kuliah");
                                     System.out.println("2. KRS");
                                     System.out.println("3. Nilai Mahasiswa");
@@ -147,9 +157,9 @@ public class Main {
 
                                     switch (akademik) {
                                         case "1": // Code program fitur jadwal kuliah
-                                        System.out.println("\t\t\t\t\t=============================");
-                                        System.out.println("\t\t\t\t\t\tJADWAL KULIAH");
-                                        System.out.println("\t\t\t\t\t=============================");
+                                        System.out.println("\t\t\t\t      ╔══════════════════════════════════════╗\n"+
+                                                           "\t\t\t\t      ║             JADWAL KULIAH            ║\n"+
+                                                           "\t\t\t\t      ╚══════════════════════════════════════╝");;
                                         String back = "";
                                         do {
                                             String[][] jadwalMatkul = {
@@ -176,9 +186,9 @@ public class Main {
                                         break;
                                         
                                         case "2": // Code program fitur KRS
-                                            System.out.println("\t\t===================");
-                                            System.out.println("\t\t\tKRS");
-                                            System.out.println("\t\t===================");
+                                            System.out.println("    ╔══════════════════════════════════════╗\n"+
+                                                               "    ║      Kartu Rencana Studi  (KRS)      ║\n"+
+                                                               "    ╚══════════════════════════════════════╝");
 
                                             String[][] matkulData = {
                                                     {"Pancasila", "1", "2", "2"},
@@ -201,10 +211,9 @@ public class Main {
                                             break;
 
                                         case "3": // Code program fitur Nilai Mahasiswa
-                                        System.out.println("==============================");
-                                        System.out.println("\tNILAI MAHASISWA");
-                                        System.out.println("==============================");
-
+                                        System.out.println("╔══════════════════════════════════════╗\n"+
+                                                           "║            NILAI MAHASISWA           ║\n"+
+                                                           "╚══════════════════════════════════════╝");
                                         String[] mataKuliah = {"MATDAS", "DASPRO", "BING ", "KTI  ", "CTPS ", "PANCASILA", "K3   "};
                                         double[] nilaiMataKuliah = new double[mataKuliah.length];
                                         int[] sksMataKuliah = new int[mataKuliah.length];

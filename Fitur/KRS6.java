@@ -1,6 +1,9 @@
 public class KRS6 {
     public static void main(String[] args) {
 
+        System.out.println("    ╔══════════════════════════════════════╗\n"+
+                           "    ║      Kartu Rencana Studi  (KRS)      ║\n"+
+                           "    ╚══════════════════════════════════════╝");
         String[][] matkulData = {
             {"Pancasila", "1", "2", "2"},
             {"KTI", "1", "2", "4"},
