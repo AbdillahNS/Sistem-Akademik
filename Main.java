@@ -159,9 +159,8 @@ public class Main {
                                         case "1": // Code program fitur jadwal kuliah
                                         System.out.println("\t\t\t\t      ╔══════════════════════════════════════╗\n"+
                                                            "\t\t\t\t      ║             JADWAL KULIAH            ║\n"+
-                                                           "\t\t\t\t      ╚══════════════════════════════════════╝");;
-                                        String back = "";
-                                        do {
+                                                           "\t\t\t\t      ╚══════════════════════════════════════╝");
+                                        
                                             String[][] jadwalMatkul = {
                                                 {"1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."},
                                                 {"2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T."},
@@ -174,41 +173,38 @@ public class Main {
                                                 {"9", "Jumat", "07:00 - 09:15", "RTI231004", "Mattdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."}
                                             };
                                     
-                                            System.out.println("-------------------------------------------------------------------------------------------------------------------");
-                                            System.out.println("| No |  Hari  |      Jam      |   Kode MK   |     Mata Kuliah     |                     Dosen                     |");
-                                            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                                            System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+                                            System.out.println("║ No ║  Hari  ║      Jam      ║   Kode MK   ║     Mata Kuliah     ║                     Dosen                     ║");
+                                            System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
                                             for (String[] data : jadwalMatkul) {
-                                                System.out.printf("| %-2s | %-6s | %-11s | %-11s | %-19s | %-45s |\n", data[0], data[1], data[2], data[3], data[4], data[5]);
-                                                System.out.println("-------------------------------------------------------------------------------------------------------------------");
+                                                System.out.printf("║ %-2s ║ %-6s ║ %-11s ║ %-11s ║ %-19s ║ %-45s ║\n", data[0], data[1], data[2], data[3], data[4], data[5]);
+                                                System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
                                             }
                                             break;
-                                        } while (!back.equals("0"));
-                                        break;
-                                        
+                                    
                                         case "2": // Code program fitur KRS
-                                            System.out.println("    ╔══════════════════════════════════════╗\n"+
-                                                               "    ║      Kartu Rencana Studi  (KRS)      ║\n"+
-                                                               "    ╚══════════════════════════════════════╝");
-
-                                            String[][] matkulData = {
-                                                    {"Pancasila", "1", "2", "2"},
-                                                    {"KTI", "1", "2", "4"},
-                                                    {"CTPS", "1", "2", "4"},
-                                                    {"Matdas", "1", "3", "6"},
-                                                    {"B ing", "1", "2", "4"},
-                                                    {"Daspro", "1", "2", "4"},
-                                                    {"Praktikum Daspro", "1", "3", "6"},
-                                                    {"K3", "1", "2", "4" }
-                                            };
-
-                                            System.out.println("-----------------------------------------------");
-                                            System.out.println("| Matkul          |   Semester  |  SKS  | Jam |");
-                                            System.out.println("-----------------------------------------------");
-                                            for (String[] data : matkulData) {
-                                                System.out.printf("%-18s%-11s%-7s%-4s\n", "| " + data[0],"|      " + data[1], "   |   " + data[2],"   |  " + data[3] + "  |");
-                                                System.out.println("-----------------------------------------------");
-                                            }
-                                            break;
+                                        System.out.println("    ╔══════════════════════════════════════╗\n"+
+                                                           "    ║      Kartu Rencana Studi  (KRS)      ║\n"+
+                                                           "    ╚══════════════════════════════════════╝");
+                                        String[][] matkulData = {
+                                            {"Pancasila", "1", "2", "2"},
+                                            {"KTI", "1", "2", "4"},
+                                            {"CTPS", "1", "2", "4"},
+                                            {"Matdas", "1", "3", "6"},
+                                            {"B ing", "1", "2", "4"},
+                                            {"Daspro", "1", "2", "4"},
+                                            {"Praktikum Daspro", "1", "3", "6"},
+                                            {"K3", "1", "2", "4"}
+                                        };
+                                
+                                        System.out.println("╔═════════════════════════════════════════════╗");
+                                        System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
+                                        System.out.println("╚═════════════════════════════════════════════╝");
+                                        for (String[] data : matkulData) {
+                                            System.out.printf("║ %-16s ║ %-8s ║ %-5s ║ %-3s ║\n", data[0], "\t  " + data[1], "  " + data[2], " " + data[3]);
+                                            System.out.println("═══════════════════════════════════════════════");
+                                        }
+                                        break;
 
                                         case "3": // Code program fitur Nilai Mahasiswa
                                         System.out.println("╔══════════════════════════════════════╗\n"+
