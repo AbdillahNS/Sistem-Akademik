@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class NewMain {
     
     static int percobaan = 3;
     static boolean berhasilLogin = false;
