@@ -1,6 +1,9 @@
 public class KRS6 {
     public static void main(String[] args) {
 
+        System.out.println("    ╔══════════════════════════════════════╗\n"+
+                           "    ║      Kartu Rencana Studi  (KRS)      ║\n"+
+                           "    ╚══════════════════════════════════════╝");
         String[][] matkulData = {
             {"Pancasila", "1", "2", "2"},
             {"KTI", "1", "2", "4"},
@@ -12,12 +15,12 @@ public class KRS6 {
             {"K3", "1", "2", "4"}
         };
 
-        System.out.println("-----------------------------------------------");
-        System.out.println("| Matkul          |   Semester  |  SKS  | Jam |");
-        System.out.println("-----------------------------------------------");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
         for (String[] data : matkulData) {
-            System.out.printf("%-18s%-11s%-7s%-4s\n", "| " + data[0], "|      " + data[1], "   |   " + data[2], "   |  " + data[3] + "  |");
-            System.out.println("-----------------------------------------------");
+            System.out.printf("║ %-16s ║ %-8s ║ %-5s ║ %-3s ║\n", data[0], "\t  " + data[1], "  " + data[2], " " + data[3]);
+            System.out.println("═══════════════════════════════════════════════");
         }
     }
 }

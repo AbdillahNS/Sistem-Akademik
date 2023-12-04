@@ -1,6 +1,9 @@
 public class JadwalKuliah {
     public static void main(String[] args) {
 
+        System.out.println("\t\t\t\t      ╔══════════════════════════════════════╗\n"+
+                           "\t\t\t\t      ║             JADWAL KULIAH            ║\n"+
+                           "\t\t\t\t      ╚══════════════════════════════════════╝");
         String[][] jadwalMatkul = {
             {"1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."},
             {"2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T."},
@@ -13,12 +16,12 @@ public class JadwalKuliah {
             {"9", "Jumat", "07:00 - 09:15", "RTI231004", "Mattdas", "Erfan Rohadi, S.T., M.Eng., Ph.D."}
         };
 
-        System.out.println("-------------------------------------------------------------------------------------------------------------------");
-        System.out.println("| No |  Hari  |      Jam      |   Kode MK   |     Mata Kuliah     |                     Dosen                     |");
-        System.out.println("-------------------------------------------------------------------------------------------------------------------");
+        System.out.println("╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║ No ║  Hari  ║      Jam      ║   Kode MK   ║     Mata Kuliah     ║                     Dosen                     ║");
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
         for (String[] data : jadwalMatkul) {
-            System.out.printf("| %-2s | %-6s | %-11s | %-11s | %-19s | %-45s |\n", data[0], data[1], data[2], data[3], data[4], data[5]);
-            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("║ %-2s ║ %-6s ║ %-11s ║ %-11s ║ %-19s ║ %-45s ║\n", data[0], data[1], data[2], data[3], data[4], data[5]);
+            System.out.println("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 }
