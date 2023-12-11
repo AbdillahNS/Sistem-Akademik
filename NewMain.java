@@ -349,9 +349,11 @@ public class NewMain {
         System.out.println(
                 "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         Scanner sc1 = new Scanner(System.in);
-        System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
-        int index = sc1.nextInt() - 1;
-        editBioMahasiswa(index);
+        if (isRole.equals("Admin")) {
+            System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
+            int index = sc1.nextInt() - 1;
+            editBioMahasiswa(index);
+        }
     }
 
     static void editBioMahasiswa(int index) {
