@@ -23,20 +23,15 @@ public class NewMain {
     static String[][] dataLogin = {
             { "Admin", "123", "Admin" },
             { "Dosen", "123", "Dosen" },
-            { "Abdillah", "2341720018", "Mahasiswa",
-                    // Biodata Abdillah
-                    "Abdillah Noer Said", "2341720018", "Laki-laki", "Islam", "Malang, 23-03-2005", "B",
-                    "2 dari 2 Bersaudara", "081555488066", "abdillahnoersaid@gmail.com", "Teknologi Informasi",
-                    "Teknik Informatika" },
-            { "Reika", "2341720173", "Mahasiswa",
-                    // Biodata Reika
-                    "Reika Amalia Syaputri", "2341720173", "Perempuan", "Islam", "Ponorogo, 29-11-2005", "B",
-                    "1 dari 2 Bersaudara", "082140874629", "reikaamalia17@gmail.com", "Teknologi Informasi",
-                    "Teknik Informatika" },
-            { "Saka", "2341720108", "Mahasiswa",
-                    // Biodata Saka
-                    "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong, 12-06-2005", "A", "2 dari 2 Bersaudara",
-                    "087846242745", "sakanabil1221@gmail.com", "Teknologi Informasi", "Teknik Informatika" },
+            { "Abdillah", "2341720018", "Mahasiswa", },
+            { "Reika", "2341720173", "Mahasiswa", },
+            { "Saka", "2341720108", "Mahasiswa" }
+    };
+
+    static String[][] bioMahasiswa = {
+            { "Abdillah Noer Said", "2341720018", "Laki-laki", "Islam", "Malang-23-03-2005", "081555488066" },
+            { "Reika Amalia Syaputri", "2341720018", "Perempuan", "Islam", "Ponorogo-29-11-2005", "082140874629" },
+            { "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong-12-06-2005", "087846242745" }
     };
 
     static void hitungIPSiswa(int[][] nilaiSiswa, double[] bobotMatkul) {
@@ -116,19 +111,6 @@ public class NewMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int percobaan = 3;
-        boolean berhasilLogin = false;
-        boolean isAdmin = false;
-        boolean isDosen = false;
-        boolean isMahasiswa = false;
-        boolean isloop = false;
-        boolean exit = false;
-
-        int mainChoice;
-        int user_id = 9;
-
-        String isRole = "";
-
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n"
                         +
@@ -191,6 +173,7 @@ public class NewMain {
                 System.out.println("1. Masukkan nilai");
                 System.out.println("2. Masukkan Presensi");
                 System.out.println("3. Kirim Pesan");
+                System.out.println("4. Edit Biodata");
                 System.out.println("9. Ganti akun");
                 System.out.println("0. Keluar");
 
@@ -267,11 +250,17 @@ public class NewMain {
                         break;
 
                     case 4:
-                        System.out.println("╔══════════════════════════════════════╗\n" +
-                                "║             NILAI MAHASISWA          ║\n" +
-                                "╚══════════════════════════════════════╝");
-                        System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
-                        break;
+                        if (isRole.equals("Admin")) {
+                            bioMahasiswa();
+                            break;
+
+                        } else if (isRole.equals("Mahasiswa")) {
+                            System.out.println("╔══════════════════════════════════════╗\n" +
+                                    "║             NILAI MAHASISWA          ║\n" +
+                                    "╚══════════════════════════════════════╝");
+                            System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
+                            break;
+                        }
 
                     case 5:
                         // Presensi
@@ -330,20 +319,99 @@ public class NewMain {
     }
 
     static void bioMahasiswa() {
-        System.out.println("╔══════════════════════════════════════╗\n" +
-                "║                BIODATA               ║\n" +
-                "╚══════════════════════════════════════╝");
-        System.out.println("Nama                  : " + dataLogin[user_id][3]);
-        System.out.println("NIM                   : " + dataLogin[user_id][4]);
-        System.out.println("Jenis Kelamin         : " + dataLogin[user_id][5]);
-        System.out.println("Agama                 : " + dataLogin[user_id][6]);
-        System.out.println("Tempat, Tanggal Lahir : " + dataLogin[user_id][7]);
-        System.out.println("Gol. Darah            : " + dataLogin[user_id][8]);
-        System.out.println("Anak Ke               : " + dataLogin[user_id][9]);
-        System.out.println("No Telepon (HP)       : " + dataLogin[user_id][10]);
-        System.out.println("Email                 : " + dataLogin[user_id][11]);
-        System.out.println("Jurusan               : " + dataLogin[user_id][12]);
-        System.out.println("Program Studi         : " + dataLogin[user_id][13]);
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                                  BIODATA                                                        ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("");
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-11s ║ %-19s ║ %-31s ║\n", "No", "Nama", "NIM",
+                "Jenis Kelamin", "Agama", "TTL", "No HP");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+        for (int i = 0; i < bioMahasiswa.length; i++) {
+            System.out.printf("║ %-2d ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║\n",
+                    i + 1,
+                    bioMahasiswa[i][0],
+                    bioMahasiswa[i][1],
+                    bioMahasiswa[i][2],
+                    bioMahasiswa[i][3],
+                    bioMahasiswa[i][4],
+                    bioMahasiswa[i][5]);
+        }
+
+        System.out.println(
+                "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        Scanner sc1 = new Scanner(System.in);
+        System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
+        int index = sc1.nextInt() - 1;
+        editBioMahasiswa(index);
+    }
+
+    static void editBioMahasiswa(int index) {
+        Scanner scanner = new Scanner(System.in);
+        if (index < 0 || index >= bioMahasiswa.length) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        System.out.println("Masukkan informasi baru untuk mahasiswa:");
+
+        // Menerima input baru untuk setiap data mahasiswa
+        System.out.print("Nama: ");
+        bioMahasiswa[index][0] = scanner.nextLine();
+
+        System.out.print("NIM: ");
+        bioMahasiswa[index][1] = scanner.nextLine();
+
+        System.out.print("Jenis Kelamin: ");
+        bioMahasiswa[index][2] = scanner.nextLine();
+
+        System.out.print("Agama: ");
+        bioMahasiswa[index][3] = scanner.nextLine();
+
+        System.out.print("TTL: ");
+        bioMahasiswa[index][4] = scanner.nextLine();
+
+        System.out.print("Nomor HP: ");
+        bioMahasiswa[index][5] = scanner.nextLine();
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                                  BIODATA                                                        ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("");
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-11s ║ %-19s ║ %-31s ║ %-10s ║\n", "No", "Nama", "NIM",
+                "Jenis Kelamin", "Agama", "TTL", "No HP");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+        for (int i = 0; i < bioMahasiswa.length; i++) {
+            System.out.printf("║ %-2d ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║\n",
+                    i + 1,
+                    bioMahasiswa[i][0],
+                    bioMahasiswa[i][1],
+                    bioMahasiswa[i][2],
+                    bioMahasiswa[i][3],
+                    bioMahasiswa[i][4],
+                    bioMahasiswa[i][5]);
+        }
+
+        System.out.println(
+                "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+        System.out.println("Informasi mahasiswa telah diperbarui.");
     }
 
     static int cariMahasiswa(String[][] dataMahasiswa, String namaMahasiswa) {
