@@ -19,6 +19,9 @@ public class NewMain {
     static String presensi;
     static int[][] nilaiSiswa;
     static double rataIPSiswa;
+    static double[] nilaiIPsiswa;
+    static int jumlahMatkul = 0;
+    static String nim;
 
     static String[][] dataLogin = {
             { "Admin", "123", "Admin" },
@@ -35,18 +38,24 @@ public class NewMain {
     };
 
     static void hitungIPSiswa(int[][] nilaiSiswa, double[] bobotMatkul) {
+        nilaiIPsiswa = new double[nilaiSiswa.length]; // Inisialisasi array di luar loop
         double totalIPSiswa = 0.0;
+
         for (int i = 0; i < nilaiSiswa.length; i++) {
             double totalNilai = 0.0;
             double totalSKS = 0.0;
 
-            for (int j = 0; j < nilaiSiswa[i].length; j++) {
-                totalNilai += nilaiSiswa[i][j] * bobotMatkul[j];
-                totalSKS += bobotMatkul[j];
+            for (int j = 0; j < nilaiSiswa[i].length; j += 3) { // Increment j sebanyak 3 karena ada 3 nilai per mata
+                                                                // kuliah
+                totalNilai += (nilaiSiswa[i][j] + nilaiSiswa[i][j + 1] + nilaiSiswa[i][j + 2]) / 3.0
+                        * bobotMatkul[j / 3];
+                totalSKS += bobotMatkul[j / 3];
             }
 
             double IP = totalNilai / totalSKS;
+            nilaiIPsiswa[i] = IP; // Memasukkan nilai IP ke dalam array
             System.out.println("IP Mahasiswa " + (i + 1) + ": " + IP);
+            // Kualifikasi nilai IP
             if (IP > 80 && IP <= 100) {
                 System.out.println("Nilai A dengan kualifikasi sangat baik");
             } else if (IP > 73 && IP <= 80) {
@@ -65,9 +74,8 @@ public class NewMain {
             totalIPSiswa += IP;
         }
 
-        rataIPSiswa = totalIPSiswa / nilaiSiswa.length;
+        double rataIPSiswa = totalIPSiswa / nilaiSiswa.length; // Mendeklarasikan variabel rataIPSiswa
         System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
-
     }
 
     static void tampilNilaiSiswa() {
@@ -76,9 +84,8 @@ public class NewMain {
             return;
         }
 
-        System.out.println("\nNilai siswa:");
         for (int i = 0; i < nilaiSiswa.length; i++) {
-            System.out.print("Siswa " + (i + 1) + ": ");
+            System.out.println("\nNilai mahasiswa dengan nama " + bioMahasiswa[i][0] + ":");
             for (int j = 0; j < nilaiSiswa[0].length; j++) {
                 System.out.print(nilaiSiswa[i][j] + " ");
             }
@@ -146,9 +153,11 @@ public class NewMain {
                         isDosen = true;
                     } else if (!"admin && dosen".equalsIgnoreCase(username)) {
                         isMahasiswa = true;
+                        nim = dataLogin[i][1];
                     }
 
                     user_id = i;
+                    System.out.println(user_id);
                     break;
                 }
             }
@@ -207,26 +216,52 @@ public class NewMain {
                 switch (mainChoice) {
                     case 1:
                         if (isRole.equals("Admin")) {
-                            System.out.print("Masukkan jumlah mahasiswa : ");
-                            int nilaiSiswa = sc.nextInt();
-                            System.out.print("Masukkan jumlah matkul : ");
-                            int jumlahMatkul = sc.nextInt();
-                            inputNilaiSiswa(nilaiSiswa, jumlahMatkul);
+                            tampilNilaiSiswa();
+                            // System.out.print("Masukkan jumlah mahasiswa : ");
+                            int jumlahMahasiswa = 3;
+                            System.out.print("Masukkan jumlah mata kuliah untuk setiap mahasiswa: ");
+                            jumlahMatkul += sc.nextInt();
+
+                            nilaiSiswa = new int[jumlahMahasiswa][jumlahMatkul * 3]; // 3 kolom untuk UAS, UTS, dan
+                                                                                     // nilai tugas per mata kuliah
+
+                            for (int i = 0; i < jumlahMahasiswa; i++) {
+                                for (int j = 0; j < jumlahMatkul * 3; j += 3) {
+                                    System.out.println("Masukkan nilai mahasiswa dengan nama " + bioMahasiswa[i][0]
+                                            + " pada mata kuliah ke-" + ((j / 3) + 1) + ":");
+                                    System.out.print("Nilai UAS: ");
+                                    nilaiSiswa[i][j] = sc.nextInt();
+                                    System.out.print("Nilai UTS: ");
+                                    nilaiSiswa[i][j + 1] = sc.nextInt();
+                                    System.out.print("Nilai tugas: ");
+                                    nilaiSiswa[i][j + 2] = sc.nextInt();
+                                }
+                            }
+
+                            // Lakukan perhitungan IPS menggunakan nilaiSiswa
+                            // hitungIPSiswa(nilaiSiswa, bobotMatkul);
+                            // ...
                             break;
                         } else if (isRole.equals("Dosen")) {
-                            tampilNilaiSiswa();
-                            double[] bobotMatkul = new double[nilaiSiswa[0].length];
-                            for (int i = 0; i < bobotMatkul.length; i++) {
-                                System.out.print("Masukkan bobot matkul : ");
-                                bobotMatkul[i] = sc.nextDouble();
+                            if (nilaiSiswa != null) { // Pastikan nilaiSiswa sudah diinisialisasi oleh Admin sebelumnya
+                                tampilNilaiSiswa();
+                                double[] bobotMatkul = new double[jumlahMatkul];
+                                for (int i = 0; i < bobotMatkul.length; i++) {
+                                    System.out.print("Masukkan bobot matkul : ");
+                                    bobotMatkul[i] = sc.nextDouble();
+                                }
+                                hitungIPSiswa(nilaiSiswa, bobotMatkul);
+                                // ...
+                            } else {
+                                System.out.println("Nilai mahasiswa belum dimasukkan oleh Admin.");
+                                // Lakukan sesuatu jika nilai mahasiswa belum dimasukkan oleh Admin
                             }
-                            hitungIPSiswa(nilaiSiswa, bobotMatkul);
-                            break;
                         } else if (isRole.equals("Mahasiswa")) {
                             // Fitur Biodata
                             bioMahasiswa();
                             break;
                         }
+
                     case 2:
                         if (isRole.equals("Admin")) {
                             System.out.println("haloo");
@@ -258,7 +293,19 @@ public class NewMain {
                             System.out.println("╔══════════════════════════════════════╗\n" +
                                     "║             NILAI MAHASISWA          ║\n" +
                                     "╚══════════════════════════════════════╝");
-                            System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
+
+                            for (int i = 0; i < bioMahasiswa.length; i++) {
+                                if (nim == bioMahasiswa[i][1]) {
+                                    System.out.println("IP mahasiswa " + bioMahasiswa[user_id - 2][0] + " adalah "
+                                            + nilaiIPsiswa[user_id - 2] + " dengan rincian nilai :\n");
+                                    break;
+                                }
+                            }
+                            for (int i = 0; i < nilaiSiswa[user_id - 2].length; i++) {
+                                System.out.print(nilaiSiswa[user_id - 2][i] + " ");
+                            }
+                            System.out.println();
+
                             break;
                         }
 
@@ -288,6 +335,8 @@ public class NewMain {
                                     sebagaiUser = gantiUsername;
                                     isRole = dataLogin[i][2];
                                     gantiAkun = true;
+                                    user_id = i;
+                                    nim = dataLogin[i][1];
                                     break;
                                 }
                             }
