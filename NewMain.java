@@ -19,7 +19,6 @@ public class NewMain {
     static String sebagaiUser = "";
     static String pesan, penerima, pengirim;
     static String presensi;
-    static String[][] matkulData = new String[8][4];
     static String[][] dataUKT = new String[1][6];
     static int[][] nilaiSiswa;
     static double rataIPSiswa;
@@ -36,6 +35,17 @@ public class NewMain {
             { "Abdillah Noer Said", "2341720018", "Laki-laki", "Islam", "Malang-23-03-2005", "081555488066" },
             { "Reika Amalia Syaputri", "2341720018", "Perempuan", "Islam", "Ponorogo-29-11-2005", "082140874629" },
             { "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong-12-06-2005", "087846242745" }
+    };
+
+    static String[][] matkulData = {
+            { "Pancasila", "1", "2", "2" },
+            { "KTI", "1", "2", "4" },
+            { "CTPS", "1", "2", "4" },
+            { "Matdas", "1", "3", "6" },
+            { "B ing", "1", "2", "4" },
+            { "Daspro", "1", "2", "4" },
+            { "Praktikum Daspro", "1", "3", "6" },
+            { "K3", "1", "2", "4" }
     };
 
     public static void main(String[] args) {
@@ -154,16 +164,15 @@ public class NewMain {
                             hitungIPSiswa(nilaiSiswa, bobotMatkul);
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
-                            // Fitur Biodata
                             bioMahasiswa();
                             break;
                         }
+
                     case 2:
                         if (isRole.equals("Admin")) {
-                            System.out.println("haloo");
+
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
-                            // Fitur Jadwal Kuliah
                             jadwalMahasiswa();
                             break;
                         }
@@ -174,8 +183,7 @@ public class NewMain {
                             kirimPesan();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
-                            // Fitur KRS
-                            printKRS(matkulData);
+                            lihatKRS();
                             break;
                         }
                         break;
@@ -187,16 +195,17 @@ public class NewMain {
 
                         } else if (isRole.equals("Mahasiswa")) {
                             melihatNilai();
+                            break;
                         }
 
                     case 5:
                         if (isRole.equals("Admin")) {
-                            inputKRS();
+                            editKRS();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
 
+                            break;
                         }
-                        // Presensi
 
                     case 6:
                         if (isRole.equals("Admin")) {
@@ -204,8 +213,8 @@ public class NewMain {
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
                             penerimaPesan(pesan, penerima);
+                            break;
                         }
-                        break;
 
                     case 7:
                         printUKT(dataUKT);
@@ -492,21 +501,65 @@ public class NewMain {
         }
     }
 
-    static void inputKRS() {
+    static void lihatKRS() {
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
 
-        for (int i = 0; i < matkulData.length; i++) {
-            System.out.println("Matkul ke-" + (i + 1) + ":");
-            matkulData[i][0] = sc.nextLine();
-            System.out.println("Semester:");
-            matkulData[i][1] = sc.nextLine();
-            System.out.println("SKS:");
-            matkulData[i][2] = sc.nextLine();
-            System.out.println("Jam:");
-            matkulData[i][3] = sc.nextLine();
+        for (String[] data : matkulData) {
+            System.out.printf("║ %-16s ║ %-8s ║ %-5s ║ %-3s ║\n", data[0], "\t  " + data[1], "  " + data[2],
+                    " " + data[3]);
+            System.out.println("═══════════════════════════════════════════════");
         }
     }
 
-    static void printKRS(String[][] matkulData) {
+    static void editKRS() {
+        boolean continueEditing = true;
+
+        while (continueEditing) {
+            System.out.println("╔═════════════════════════════════════════════╗");
+            System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
+            System.out.println("╚═════════════════════════════════════════════╝");
+
+            for (String[] data : matkulData) {
+                System.out.printf("║ %-16s ║ %-8s ║ %-5s ║ %-3s ║\n", data[0], "\t  " + data[1], "  " + data[2],
+                        " " + data[3]);
+                System.out.println("═══════════════════════════════════════════════");
+            }
+
+            Scanner sc2 = new Scanner(System.in);
+            if (isRole.equals("Admin")) {
+                System.out.print("Masukkan data KRS yang ingin diedit : ");
+                int index = sc2.nextInt() - 1;
+                inputKRS(index);
+
+                System.out.print("Apakah Anda ingin melanjutkan mengedit data KRS? (Y/N): ");
+                String choice = sc2.next();
+                if (choice.equalsIgnoreCase("N")) {
+                    continueEditing = false;
+                }
+            }
+        }
+    }
+
+    static void inputKRS(int index) {
+        Scanner sc = new Scanner(System.in);
+        if (index < 0 || index >= matkulData.length) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        System.out.println("Masukkan informasi baru untuk mahasiswa:");
+
+        System.out.println("Matkul ke-" + (index + 1) + ":");
+        matkulData[index][0] = sc.nextLine();
+        System.out.println("Semester:");
+        matkulData[index][1] = sc.nextLine();
+        System.out.println("SKS:");
+        matkulData[index][2] = sc.nextLine();
+        System.out.println("Jam:");
+        matkulData[index][3] = sc.nextLine();
+
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
         System.out.println("╚═════════════════════════════════════════════╝");
@@ -514,6 +567,19 @@ public class NewMain {
             System.out.printf("║ %-16s ║ %-10s ║ %-5s ║ %-3s ║\n", data[0], data[1], data[2], data[3]);
             System.out.println("═══════════════════════════════════════════════");
         }
+
+        System.out.println(
+                "════════════════════════════════════════════════════════════════════════");
+        System.out.println("Informasi KRS telah diperbarui.");
+    }
+
+    static int caridataKRS(String[][] dataKRS, String namaMatkul) {
+        for (int i = 0; i < dataKRS.length; i++) {
+            if (dataKRS[i][0].equalsIgnoreCase(namaMatkul)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     static void inputUKT() {
