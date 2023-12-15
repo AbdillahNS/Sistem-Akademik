@@ -39,7 +39,7 @@ public class NewMain {
             { "Reika Amalia Syaputri", "2341720018", "Perempuan", "Islam", "Ponorogo-29-11-2005", "082140874629" },
             { "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong-12-06-2005", "087846242745" }
     };
-  
+
     static String[][] jadwalMatkul = {
             { "1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D." },
             { "2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T." },
@@ -124,73 +124,6 @@ public class NewMain {
         }
     }
 
-    static void hitungIPSiswa(int[][] nilaiSiswa, double[] bobotMatkul) {
-        nilaiIPsiswa = new double[nilaiSiswa.length]; // Inisialisasi array di luar loop
-        double totalIPSiswa = 0.0;
-
-        for (int i = 0; i < nilaiSiswa.length; i++) {
-            double totalNilai = 0.0;
-            double totalSKS = 0.0;
-
-            for (int j = 0; j < nilaiSiswa[i].length; j += 3) { // Increment j sebanyak 3 karena ada 3 nilai per mata
-                                                                // kuliah
-                totalNilai += (nilaiSiswa[i][j] + nilaiSiswa[i][j + 1] + nilaiSiswa[i][j + 2]) / 3.0
-                        * bobotMatkul[j / 3];
-                totalSKS += bobotMatkul[j / 3];
-            }
-
-            double IP = totalNilai / totalSKS;
-            nilaiIPsiswa[i] = IP; // Memasukkan nilai IP ke dalam array
-            System.out.println("IP Mahasiswa " + (i + 1) + ": " + IP);
-            // Kualifikasi nilai IP
-            if (IP > 80 && IP <= 100) {
-                System.out.println("Nilai A dengan kualifikasi sangat baik");
-            } else if (IP > 73 && IP <= 80) {
-                System.out.println("Nilai B+ dengan kualifikasi lebih dari baik");
-            } else if (IP > 65 && IP <= 73) {
-                System.out.println("Nilai B dengan kualifikasi baik");
-            } else if (IP > 60 && IP <= 65) {
-                System.out.println("Nilai C+ dengan kualifikasi lebih dari cukup");
-            } else if (IP > 50 && IP <= 60) {
-                System.out.println("Nilai C dengan kualifikasi cukup");
-            } else if (IP > 39 && IP <= 50) {
-                System.out.println("Nilai D dengan kualifikasi kurang");
-            } else {
-                System.out.println("Nilai E dengan kualifikasi gagal");
-            }
-            totalIPSiswa += IP;
-        }
-
-        double rataIPSiswa = totalIPSiswa / nilaiSiswa.length; // Mendeklarasikan variabel rataIPSiswa
-        System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
-    }
-
-    static void tampilNilaiSiswa() {
-        if (nilaiSiswa == null || nilaiSiswa.length == 0 || nilaiSiswa[0].length == 0) {
-            System.out.println("Belum ada nilai siswa yang dimasukkan.");
-            return;
-        }
-
-        for (int i = 0; i < nilaiSiswa.length; i++) {
-            System.out.println("\nNilai mahasiswa dengan nama " + bioMahasiswa[i][0] + ":");
-            for (int j = 0; j < nilaiSiswa[0].length; j++) {
-                System.out.print(nilaiSiswa[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    static void inputNilaiSiswa(int x, int y) {
-        nilaiSiswa = new int[x][y];
-        Scanner scanner = new Scanner(System.in);
-
-        for (int i = 0; i < nilaiSiswa.length; i++) {
-            System.out.println("Masukkan nilai untuk Siswa " + (i + 1) + ":");
-            for (int j = 0; j < nilaiSiswa[0].length; j++) {
-                System.out.print("Masukkan nilai mata pelajaran ke-" + (j + 1) + ": ");
-                nilaiSiswa[i][j] = scanner.nextInt();
-            }
-        }
     static String[][] matkulData = {
             { "Pancasila", "1", "2", "2" },
             { "KTI", "1", "2", "4" },
@@ -317,6 +250,7 @@ public class NewMain {
                             int jumlahMahasiswa = bioMahasiswa.length;
                             System.out.print("Masukkan jumlah mata kuliah untuk setiap mahasiswa: ");
                             jumlahMatkul += sc.nextInt();
+                            System.out.println(jumlahMatkul);
 
                             nilaiSiswa = new int[jumlahMahasiswa][jumlahMatkul * 3]; // 3 kolom untuk UAS, UTS, dan
                                                                                      // nilai tugas per mata kuliah
@@ -341,17 +275,26 @@ public class NewMain {
                         } else if (isRole.equals("Dosen")) {
                             if (nilaiSiswa != null) { // Pastikan nilaiSiswa sudah diinisialisasi oleh Admin sebelumnya
                                 tampilNilaiSiswa();
-                                double[] bobotMatkul = new double[jumlahMatkul];
-                                for (int i = 0; i < bobotMatkul.length; i++) {
-                                    System.out.print("Masukkan bobot matkul : ");
-                                    bobotMatkul[i] = sc.nextDouble();
+                                double[] bobotMatkul = new double[jumlahMatkul * 3];
+
+                                for (int i = 0; i < jumlahMatkul; i++) {
+                                    System.out.println("Masukkan bobot untuk matkul ke-" + (i + 1) + ":");
+
+                                    System.out.print("Bobot UTS: ");
+                                    bobotMatkul[i * 3] = sc.nextDouble();
+
+                                    System.out.print("Bobot UAS: ");
+                                    bobotMatkul[i * 3 + 1] = sc.nextDouble();
+
+                                    System.out.print("Bobot tugas: ");
+                                    bobotMatkul[i * 3 + 2] = sc.nextDouble();
                                 }
+
                                 hitungIPSiswa(nilaiSiswa, bobotMatkul);
-                                // ...
                             } else {
                                 System.out.println("Nilai mahasiswa belum dimasukkan oleh Admin.");
-                                // Lakukan sesuatu jika nilai mahasiswa belum dimasukkan oleh Admin
                             }
+                            break;
                         } else if (isRole.equals("Mahasiswa")) {
                             bioMahasiswa();
                             break;
@@ -404,9 +347,9 @@ public class NewMain {
                             break;
 
                         }
-                        
+
                     case 6:
-                      if (isRole.equals("Admin")) {
+                        if (isRole.equals("Admin")) {
                             editKRS();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
@@ -549,6 +492,7 @@ public class NewMain {
         System.out.println(
                 "═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         if (isRole.equals("Admin")) {
+            Scanner sc1 = new Scanner(System.in);
             System.out.println("Pilih tindakan");
             System.out.println("1. Edit biodata");
             System.out.println("2. Hapus biodata");
@@ -718,6 +662,7 @@ public class NewMain {
         System.out.println("╔══════════════════════════════════════╗\n" +
                 "║             NILAI MAHASISWA          ║\n" +
                 "╚══════════════════════════════════════╝");
+
         System.out.println("Rata-rata IP Semua Mahasiswa: " + rataIPSiswa);
     }
 
@@ -830,7 +775,6 @@ public class NewMain {
             System.out.println("═══════════════════════════════════════════════");
         }
     }
-
 
     static void editKRS() {
         boolean continueEditing = true;
