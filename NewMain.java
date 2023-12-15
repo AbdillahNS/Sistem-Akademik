@@ -37,6 +37,90 @@ public class NewMain {
             { "Saka Nabil", "2341720108", "Laki-laki", "Islam", "Selong-12-06-2005", "087846242745" }
     };
 
+    static String[][] jadwalMatkul = {
+            { "1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D." },
+            { "2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T." },
+            { "3", "Selasa", "08:40 - 12:10", "RTI231005", "Bahasa Inggris", "Farida Ulfa, S.Pd., M.Pd." },
+            { "4", "Rabu", "09:40 - 13:40", "RTI231006", "Dasar Pemrograman", "Triana Fatmawati,S.T., M.T." },
+            { "5", "Rabu", "13:40 - 17:10", "RTI231002", "KTI", "Ariadi Retno Tri Hayati Ririd, S.Kom., M.Kom." },
+            { "6", "Kamis", "07:00 - 10:15", "RTI231003", "CTPS", "Dwi Puspitasari, S.Kom., M.Kom." },
+            { "7", "Kamis", "10:30 - 12:10", "RTI231001", "Pancasila", "Widaningsih, S.H., M.H." },
+            { "8", "Kamis", "13:40 - 17:10", "RTI231008", "K3", "Budi Harijanto, S.T., M.MKom." },
+            { "9", "Jumat", "07:00 - 09:15", "RTI231004", "Mattdas", "Erfan Rohadi, S.T., M.Eng., Ph.D." }
+    };
+
+    public static void tambahBaris() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Masukkan data untuk baris baru:");
+
+        String kolom[] = { "nama", "nim", "jenis kelamin", "agama", "tempat, tanggal lahir", "nomor telepon" };
+
+        String[] newEntry = new String[bioMahasiswa[0].length];
+        for (int i = 0; i < newEntry.length; i++) {
+            System.out.print("Masukkan nilai untuk kolom " + kolom[i] + ": ");
+            newEntry[i] = scanner.nextLine();
+        }
+
+        if (newEntry.length == bioMahasiswa[0].length) {
+            bioMahasiswa = addElement(bioMahasiswa, newEntry);
+            System.out.println("Baris baru berhasil ditambahkan.");
+            // Menampilkan array setelah penambahan
+            tampilbiodata();
+        } else {
+            System.out.println("Panjang data yang dimasukkan tidak sesuai dengan array saat ini.");
+        }
+    }
+
+    public static String[][] addElement(String[][] array, String[] newEntry) {
+        String[][] newArray = new String[array.length + 1][array[0].length];
+        for (int i = 0; i < array.length; i++) {
+            System.arraycopy(array[i], 0, newArray[i], 0, array[i].length);
+        }
+        System.arraycopy(newEntry, 0, newArray[array.length], 0, newEntry.length);
+        return newArray;
+    }
+
+    public static void hapusElemen(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < bioMahasiswa.length) {
+            bioMahasiswa = removeElement(bioMahasiswa, rowIndex);
+            System.out.println("Elemen pada baris " + (rowIndex + 1) + " telah dihapus.");
+            // Menampilkan array setelah penghapusan
+            tampilbiodata();
+        } else {
+            System.out.println("Indeks baris tidak valid");
+        }
+    }
+
+    public static String[][] removeElement(String[][] array, int index) {
+        if (index < 0 || index >= array.length) {
+            return array;
+        }
+
+        String[][] newArray = new String[array.length - 1][array[0].length];
+        int newIndex = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (i != index) {
+                System.arraycopy(array[i], 0, newArray[newIndex], 0, array[0].length);
+                newIndex++;
+            }
+        }
+
+        return newArray;
+    }
+
+    public static void editJadwal(int rowIndex, int colIndex, String newValue) {
+        if (rowIndex >= 0 && rowIndex < jadwalMatkul.length && colIndex >= 0 && colIndex < jadwalMatkul[0].length) {
+            jadwalMatkul[rowIndex][colIndex] = newValue;
+            System.out.println(
+                    "Nilai pada baris " + (rowIndex + 1) + " kolom " + (colIndex + 1) + " telah diubah menjadi: "
+                            + newValue);
+            jadwalMahasiswa();
+        } else {
+            System.out.println("Indeks baris atau kolom tidak valid");
+        }
+    }
+
     static void hitungIPSiswa(int[][] nilaiSiswa, double[] bobotMatkul) {
         nilaiIPsiswa = new double[nilaiSiswa.length]; // Inisialisasi array di luar loop
         double totalIPSiswa = 0.0;
@@ -183,6 +267,7 @@ public class NewMain {
                 System.out.println("2. Masukkan Presensi");
                 System.out.println("3. Kirim Pesan");
                 System.out.println("4. Edit Biodata");
+                System.out.println("5. Edit Jadwal");
                 System.out.println("9. Ganti akun");
                 System.out.println("0. Keluar");
 
@@ -218,7 +303,7 @@ public class NewMain {
                         if (isRole.equals("Admin")) {
                             tampilNilaiSiswa();
                             // System.out.print("Masukkan jumlah mahasiswa : ");
-                            int jumlahMahasiswa = 3;
+                            int jumlahMahasiswa = bioMahasiswa.length;
                             System.out.print("Masukkan jumlah mata kuliah untuk setiap mahasiswa: ");
                             jumlahMatkul += sc.nextInt();
 
@@ -310,6 +395,19 @@ public class NewMain {
                         }
 
                     case 5:
+                        if (isRole.equals("Admin")) {
+                            jadwalMahasiswa();
+                            System.out.print("Masukkan baris yang akan diedit : ");
+                            int baris = sc.nextInt() - 1;
+                            System.out.print("Masukkan kolom yang akan diedit : ");
+                            int kolom = sc.nextInt() - 1;
+                            sc.nextLine();
+                            System.out.print("Masukkan perubahan : ");
+                            String ubah = sc.nextLine();
+                            editJadwal(baris, kolom, ubah);
+                            break;
+
+                        }
                         // Presensi
                         break;
 
@@ -399,9 +497,30 @@ public class NewMain {
                 "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         Scanner sc1 = new Scanner(System.in);
         if (isRole.equals("Admin")) {
-            System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
-            int index = sc1.nextInt() - 1;
-            editBioMahasiswa(index);
+            System.out.println("Pilih tindakan");
+            System.out.println("1. Edit biodata");
+            System.out.println("2. Hapus biodata");
+            System.out.println("3. Tambah biodata");
+            System.out.println("0. Keluar");
+            System.out.print("\tPilih menu : => ");
+            int menu = sc1.nextInt();
+            switch (menu) {
+                case 1:
+                    System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
+                    int indexEdit = sc1.nextInt() - 1;
+                    editBioMahasiswa(indexEdit);
+                    break;
+                case 2:
+                    System.out.print("Masukkan nomor nahasiswa yang ingin dihapus : ");
+                    int indexHapus = sc1.nextInt() - 1;
+                    hapusElemen(indexHapus);
+                    break;
+                case 3:
+                    tambahBaris();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -465,6 +584,38 @@ public class NewMain {
         System.out.println("Informasi mahasiswa telah diperbarui.");
     }
 
+    static void tampilbiodata() {
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                                  BIODATA                                                        ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println("");
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-11s ║ %-19s ║ %-31s ║ %-10s ║\n", "No", "Nama", "NIM",
+                "Jenis Kelamin", "Agama", "TTL", "No HP");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+        for (int i = 0; i < bioMahasiswa.length; i++) {
+            System.out.printf("║ %-2d ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║\n",
+                    i + 1,
+                    bioMahasiswa[i][0],
+                    bioMahasiswa[i][1],
+                    bioMahasiswa[i][2],
+                    bioMahasiswa[i][3],
+                    bioMahasiswa[i][4],
+                    bioMahasiswa[i][5]);
+        }
+
+        System.out.println(
+                "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+    }
+
     static int cariMahasiswa(String[][] dataMahasiswa, String namaMahasiswa) {
         for (int i = 0; i < dataMahasiswa.length; i++) {
             if (dataMahasiswa[i][0].equalsIgnoreCase(namaMahasiswa)) {
@@ -511,17 +662,6 @@ public class NewMain {
         System.out.println("\t\t\t\t      ╔══════════════════════════════════════╗\n" +
                 "\t\t\t\t      ║             JADWAL KULIAH            ║\n" +
                 "\t\t\t\t      ╚══════════════════════════════════════╝");
-        String[][] jadwalMatkul = {
-                { "1", "Senin", "07:00 - 09:30", "RTI231004", "Matdas", "Erfan Rohadi, S.T., M.Eng., Ph.D." },
-                { "2", "Senin", "11:20 - 17:10", "RTI231007", "Praktikum Dspro", "Triana Fatmawati,S.T., M.T." },
-                { "3", "Selasa", "08:40 - 12:10", "RTI231005", "Bahasa Inggris", "Farida Ulfa, S.Pd., M.Pd." },
-                { "4", "Rabu", "09:40 - 13:40", "RTI231006", "Dasar Pemrograman", "Triana Fatmawati,S.T., M.T." },
-                { "5", "Rabu", "13:40 - 17:10", "RTI231002", "KTI", "Ariadi Retno Tri Hayati Ririd, S.Kom., M.Kom." },
-                { "6", "Kamis", "07:00 - 10:15", "RTI231003", "CTPS", "Dwi Puspitasari, S.Kom., M.Kom." },
-                { "7", "Kamis", "10:30 - 12:10", "RTI231001", "Pancasila", "Widaningsih, S.H., M.H." },
-                { "8", "Kamis", "13:40 - 17:10", "RTI231008", "K3", "Budi Harijanto, S.T., M.MKom." },
-                { "9", "Jumat", "07:00 - 09:15", "RTI231004", "Mattdas", "Erfan Rohadi, S.T., M.Eng., Ph.D." }
-        };
 
         System.out.println(
                 "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -561,4 +701,5 @@ public class NewMain {
             System.out.println("═══════════════════════════════════════════════");
         }
     }
+
 }
