@@ -25,6 +25,7 @@ public class NewMain {
     static double[] nilaiIPsiswa;
     static int jumlahMatkul = 0;
     static String nim;
+    static String nama;
 
     static String[][] dataLogin = {
             { "Admin", "123", "Admin" },
