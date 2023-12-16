@@ -57,7 +57,7 @@ public class NewMain {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Masukkan data untuk baris baru:");
 
-        String kolom[] = { "nama", "nim", "jenis kelamin", "agama", "tempat, tanggal lahir", "nomor telepon" };
+        String kolom[] = { "nama", "nim", "jenis kelamin", "agama", "tempat, tanggal lahir", "No HP" };
 
         String[] newEntry = new String[bioMahasiswa[0].length];
         for (int i = 0; i < newEntry.length; i++) {
@@ -68,8 +68,6 @@ public class NewMain {
         if (newEntry.length == bioMahasiswa[0].length) {
             bioMahasiswa = addElement(bioMahasiswa, newEntry);
             System.out.println("Baris baru berhasil ditambahkan.");
-            // Menampilkan array setelah penambahan
-            tampilbiodata();
         } else {
             System.out.println("Panjang data yang dimasukkan tidak sesuai dengan array saat ini.");
         }
@@ -88,8 +86,6 @@ public class NewMain {
         if (rowIndex >= 0 && rowIndex < bioMahasiswa.length) {
             bioMahasiswa = removeElement(bioMahasiswa, rowIndex);
             System.out.println("Elemen pada baris " + (rowIndex + 1) + " telah dihapus.");
-            // Menampilkan array setelah penghapusan
-            tampilbiodata();
         } else {
             System.out.println("Indeks baris tidak valid");
         }
@@ -318,7 +314,11 @@ public class NewMain {
                             break;
 
                         } else if (isRole.equals("Mahasiswa")) {
-                            melihatNilai();
+                            if (nilaiSiswa != null) {
+                                melihatNilai();
+                            } else {
+                                System.out.println("Nilai mahasiswa belum ada");
+                            }
                             break;
                         }
 
@@ -335,6 +335,9 @@ public class NewMain {
                             editJadwal(baris, kolom, ubah);
                             break;
 
+                        } else if (isRole.equals("Mahasiswa")) {
+                            tampilPresensi();
+                            break;
                         }
 
                     case 6:
@@ -342,7 +345,7 @@ public class NewMain {
                             editKRS();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
-                            tampilPresensi();
+                            penerimaPesan(pesan, penerima);
                             break;
                         }
                     case 7:
@@ -350,13 +353,9 @@ public class NewMain {
                             inputUKT();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
-                            penerimaPesan(pesan, penerima);
+                            printUKT(dataUKT);
                             break;
                         }
-
-                    case 8:
-                        printUKT(dataUKT);
-                        break;
 
                     case 9:
                         gantiAkun();
@@ -656,7 +655,7 @@ public class NewMain {
                 "║             NILAI MAHASISWA          ║\n" +
                 "╚══════════════════════════════════════╝");
 
-        System.out.println(nim);
+        System.out.println("Transkip Nilai :");
 
         for (int i = 0; i < bioMahasiswa.length; i++) {
             if (nim == bioMahasiswa[i][1]) {
@@ -819,13 +818,13 @@ public class NewMain {
 
         System.out.println("Masukkan informasi baru untuk mahasiswa:");
 
-        System.out.println("Matkul ke-" + (index + 1) + ":");
+        System.out.print("Matkul ke-" + (index + 1) + ":");
         matkulData[index][0] = sc.nextLine();
-        System.out.println("Semester:");
+        System.out.print("Semester:");
         matkulData[index][1] = sc.nextLine();
-        System.out.println("SKS:");
+        System.out.print("SKS:");
         matkulData[index][2] = sc.nextLine();
-        System.out.println("Jam:");
+        System.out.print("Jam:");
         matkulData[index][3] = sc.nextLine();
 
         System.out.println("╔═════════════════════════════════════════════╗");
