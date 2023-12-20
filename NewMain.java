@@ -21,7 +21,7 @@ public class NewMain {
     static String[][] dataUKT = new String[1][6];
     static int[][] nilaiSiswa;
     static double rataIPSiswa;
-    static double[] nilaiIPsiswa;
+    static double[] nilaiIPsiswa;   
     static int jumlahMatkul = 0;
     static String nim;
     static String nama;
@@ -101,6 +101,7 @@ public class NewMain {
             String username = sc.nextLine();
             System.out.print("Masukkan Password : ");
             String password = sc.nextLine();
+            System.out.println();
 
             for (int i = 0; i < dataLogin.length; i++) {
                 if (dataLogin[i][0].equalsIgnoreCase(username) && dataLogin[i][1].equalsIgnoreCase(password)) {
@@ -131,34 +132,36 @@ public class NewMain {
         do {
             System.out.println("╔══════════════════════════════════════╗\n" +
                     "║           SELAMAT DATANG DI          ║\n" +
-                    "║            SIAKAD POLINEMA           ║\n" +
+                    "║            SISTEM AKADEMIK           ║\n" +
                     "╚══════════════════════════════════════╝");
 
             if (isAdmin) {
                 // Admin menu
                 System.out.println("Beranda " + isRole);
                 System.out.println("1. Masukkan nilai");
-                System.out.println("2. Edit Presensi");
-                System.out.println("3. Kirim Pesan");
-                System.out.println("4. Edit Data Mahasiswa");
-                System.out.println("5. Edit Jadwal");
-                System.out.println("6. Input KRS");
-                System.out.println("7. Input UKT");
-                System.out.println("8. Edit Data Dosen");
-                System.out.println("9. Ganti akun");
+                System.out.println("2. Edit Data Mahasiswa");
+                System.out.println("3. Edit Data Dosen");
+                System.out.println("4. Edit Presensi");
+                System.out.println("5. Kirim Pesan");
+                System.out.println("6. Edit Jadwal");
+                System.out.println("7. Input KRS");
+                System.out.println("8. Input UKT");
+                System.out.println("9. Ganti Akun");
                 System.out.println("0. Keluar");
+                System.out.println();
 
             } else if (isDosen) {
                 // Dosen menu
                 System.out.println("Beranda " + isRole);
-                System.out.println("1. Menghitung nilai");
+                System.out.println("1. Menghitung Nilai");
                 System.out.println("2. Input Presensi");
-                System.out.println("3. Lihat Data");
-                System.out.println("9. Ganti akun");
+                System.out.println("3. Lihat Data Dosen");
+                System.out.println("9. Ganti Akun");
                 System.out.println("0. Keluar");
+                System.out.println();
 
             } else if (isMahasiswa) {
-                // Mahasiswa menus
+                // Mahasiswa menu
                 System.out.println("Beranda " + isRole);
                 System.out.println("1. Biodata");
                 System.out.println("2. Jadwal Kuliah");
@@ -167,13 +170,15 @@ public class NewMain {
                 System.out.println("5. Presensi");
                 System.out.println("6. Message");
                 System.out.println("7. UKT");
-                System.out.println("9. Ganti akun");
+                System.out.println("9. Ganti Akun");
                 System.out.println("0. Keluar");
+                System.out.println();
             }
 
             System.out.print("Pilih Menu: ");
             mainChoice = sc.nextInt();
             sc.nextLine();
+            System.out.println();
             isloop = true;
 
             do {
@@ -183,6 +188,12 @@ public class NewMain {
                             tampilNilaiSiswa();
                             // System.out.print("Masukkan jumlah mahasiswa : ");
                             int jumlahMahasiswa = bioMahasiswa.length;
+                                System.out.println(
+                              "╔══════════════════════════════════════════════════════════╗");
+                                System.out.println(
+                              "║                  INPUT NILAI MAHASISWA                   ║");
+                                System.out.println(
+                              "╚══════════════════════════════════════════════════════════╝");
                             System.out.print("Masukkan jumlah mata kuliah untuk setiap mahasiswa: ");
                             jumlahMatkul += sc.nextInt();
 
@@ -207,6 +218,12 @@ public class NewMain {
                             // ...
                             break;
                         } else if (isRole.equals("Dosen")) {
+                                System.out.println(
+                              "╔══════════════════════════════════════════════════════════╗");
+                                System.out.println(
+                              "║                  HITUNG NILAI MAHASISWA                  ║");
+                                System.out.println(
+                              "╚══════════════════════════════════════════════════════════╝");
                             if (nilaiSiswa != null) { // Pastikan nilaiSiswa sudah diinisialisasi oleh Admin sebelumnya
                                 tampilNilaiSiswa();
                                 double[] bobotMatkul = new double[jumlahMatkul];
@@ -226,7 +243,7 @@ public class NewMain {
 
                     case 2:
                         if (isRole.equals("Admin")) {
-                            editPresensi();
+                            bioMahasiswa();
                             break;
                         } else if (isRole.equals("Dosen")) {
                             inputPresensi();
@@ -239,7 +256,7 @@ public class NewMain {
 
                     case 3:
                         if (isRole.equals("Admin")) {
-                            kirimPesan();
+                            bioDosen();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
                             lihatKRS();
@@ -252,7 +269,7 @@ public class NewMain {
 
                     case 4:
                         if (isRole.equals("Admin")) {
-                            bioMahasiswa();
+                            editPresensi();
                             break;
 
                         } else if (isRole.equals("Mahasiswa")) {
@@ -266,15 +283,7 @@ public class NewMain {
 
                     case 5:
                         if (isRole.equals("Admin")) {
-                            jadwalMahasiswa();
-                            System.out.print("Masukkan baris yang akan diedit : ");
-                            int baris = sc.nextInt() - 1;
-                            System.out.print("Masukkan kolom yang akan diedit : ");
-                            int kolom = sc.nextInt() - 1;
-                            sc.nextLine();
-                            System.out.print("Masukkan perubahan : ");
-                            String ubah = sc.nextLine();
-                            editJadwal(baris, kolom, ubah);
+                            kirimPesan();
                             break;
 
                         } else if (isRole.equals("Mahasiswa")) {
@@ -284,7 +293,16 @@ public class NewMain {
 
                     case 6:
                         if (isRole.equals("Admin")) {
-                            editKRS();
+                            jadwalMahasiswa();
+                            System.out.println();
+                            System.out.print("Masukkan baris yang akan diedit : ");
+                            int baris = sc.nextInt() - 1;
+                            System.out.print("Masukkan kolom yang akan diedit : ");
+                            int kolom = sc.nextInt() - 1;
+                            sc.nextLine();
+                            System.out.print("Masukkan perubahan : ");
+                            String ubah = sc.nextLine();
+                            editJadwal(baris, kolom, ubah);
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
                             penerimaPesan(pesan, penerima);
@@ -292,7 +310,7 @@ public class NewMain {
                         }
                     case 7:
                         if (isRole.equals("Admin")) {
-                            inputUKT();
+                            editKRS();
                             break;
                         } else if (isRole.equals("Mahasiswa")) {
                             printUKT(dataUKT);
@@ -300,7 +318,7 @@ public class NewMain {
                         }
                     case 8:
                         if (isRole.equals("Admin")) {
-                            bioDosen();
+                            inputUKT();
                             break;
                         }
 
@@ -332,7 +350,7 @@ public class NewMain {
 
         String[] newEntry = new String[bioDosen[0].length];
         for (int i = 0; i < newEntry.length; i++) {
-            System.out.print("Masukkan data untuk kolom " + kolom[i] + ": ");
+            System.out.print("Masukkan " + kolom[i] + ": ");
             newEntry[i] = scanner.nextLine();
         }
 
@@ -358,7 +376,7 @@ public class NewMain {
     public static void hapusElemenDosen(int rowIndex) {
         if (rowIndex >= 0 && rowIndex < bioDosen.length) {
             bioDosen = removeElementDosen(bioDosen, rowIndex);
-            System.out.println("Elemen pada baris " + (rowIndex + 1) + " telah dihapus.");
+            System.out.println("Data pada baris " + (rowIndex + 1) + " telah dihapus.");
         } else {
             System.out.println("Indeks baris tidak valid");
         }
@@ -418,7 +436,7 @@ public class NewMain {
     public static void hapusElemen(int rowIndex) {
         if (rowIndex >= 0 && rowIndex < bioMahasiswa.length) {
             bioMahasiswa = removeElement(bioMahasiswa, rowIndex);
-            System.out.println("Elemen pada baris " + (rowIndex + 1) + " telah dihapus.");
+            System.out.println("Data pada baris " + (rowIndex + 1) + " telah dihapus.");
         } else {
             System.out.println("Indeks baris tidak valid");
         }
@@ -445,6 +463,13 @@ public class NewMain {
 
     // Fungsi edit jadwal
     public static void editJadwal(int rowIndex, int colIndex, String newValue) {
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                        EDIT JADWAL MAHASISWA                                                    ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
         if (rowIndex >= 0 && rowIndex < jadwalMatkul.length && colIndex >= 0 && colIndex < jadwalMatkul[0].length) {
             jadwalMatkul[rowIndex][colIndex] = newValue;
             System.out.println(
@@ -504,9 +529,9 @@ public class NewMain {
             return;
         }
 
-        System.out.println("\nNilai siswa:");
+        System.out.println("\nNilai siswa: ");
         for (int i = 0; i < nilaiSiswa.length; i++) {
-            System.out.println("\nNilai mahasiswa dengan nama " + bioMahasiswa[i][0] + ":");
+            System.out.println("Nilai mahasiswa dengan nama " + bioMahasiswa[i][0] + ": ");
             for (int j = 0; j < nilaiSiswa[0].length; j++) {
                 System.out.print(nilaiSiswa[i][j] + " ");
             }
@@ -517,7 +542,6 @@ public class NewMain {
     // Fungsi Input nilai Mahasiswa
     static void inputNilaiSiswa(int x, int y) {
         nilaiSiswa = new int[x][y];
-
         for (int i = 0; i < nilaiSiswa.length; i++) {
             System.out.println("Masukkan nilai untuk Siswa " + (i + 1) + ":");
             for (int j = 0; j < nilaiSiswa[0].length; j++) {
@@ -538,14 +562,40 @@ public class NewMain {
 
     // Biodata Dosen
     static void bioDosen() {
-
+        if (isRole.equals("Dosen")) {
         System.out.println(
                 "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println(
-                "║                                                             BIODATA                                                                          ║");
+                "║                                                            DATA DOSEN                                                                        ║");
         System.out.println(
                 "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-        System.out.println("");
+
+        System.out.println(
+                "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-11s ║ %-19s ║ %-20s ║ %-15s ║\n", "No", "Nama", "NIP",
+                "Jenis Kelamin", "Agama", "TTL", "No HP");
+        System.out.println(
+                "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        
+        for (int i = 0; i < bioDosen.length; i++) {
+            System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-13s ║ %-19s ║ %-20s ║ %-15s ║\n",
+                    i + 1,
+                    bioDosen[i][0],
+                    bioDosen[i][1],
+                    bioDosen[i][2],
+                    bioDosen[i][3],
+                    bioDosen[i][4],
+                    bioDosen[i][5]);
+        }
+
+        } else if (isRole.equals("Admin")) {
+        System.out.println(
+                "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                                         EDIT DATA DOSEN                                                                      ║");
+        System.out.println(
+                "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
 
         System.out.println(
                 "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -563,6 +613,7 @@ public class NewMain {
                     bioDosen[i][3],
                     bioDosen[i][4],
                     bioDosen[i][5]);
+        }
         }
 
         System.out.println(
@@ -595,6 +646,7 @@ public class NewMain {
             }
         }
     }
+    
     
     // Fungsi Edit biodata dosen
     static void editBioDosen(int index) {
@@ -631,7 +683,6 @@ public class NewMain {
                 "║                                                             BIODATA                                                                          ║");
         System.out.println(
                 "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-        System.out.println("");
 
         System.out.println(
                 "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -669,14 +720,14 @@ public class NewMain {
 
     // Fungsi Biodata Mahasiswa
     static void bioMahasiswa() {
-
+        
+        if (isRole.equals("Admin")) {
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println(
-                "║                                                  BIODATA                                                                          ║");
+                "║                                                EDIT BIODATA MAHASISWA                                                             ║");
         System.out.println(
                 "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-        System.out.println("");
 
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -685,8 +736,8 @@ public class NewMain {
         System.out.println(
                 "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
 
-        for (int i = 0; i < bioMahasiswa.length; i++) {
-            System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║ %-15s ║\n",
+            for (int i = 0; i < bioMahasiswa.length; i++) {
+                System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║ %-15s ║\n",
                     i + 1,
                     bioMahasiswa[i][0],
                     bioMahasiswa[i][1],
@@ -694,6 +745,33 @@ public class NewMain {
                     bioMahasiswa[i][3],
                     bioMahasiswa[i][4],
                     bioMahasiswa[i][5]);
+            }
+        }
+        if (isRole.equals("Mahasiswa")) {
+        System.out.println(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                                  BIODATA MAHASISWA                                                                ║");
+        System.out.println(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+        System.out.println(
+                "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-11s ║ %-19s ║ %-31s ║ %-15s ║\n", "No", "Nama", "NIM",
+                "Jenis Kelamin", "Agama", "TTL", "No HP");
+        System.out.println(
+                "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+            for (int i = 0; i < bioMahasiswa.length; i++) {
+                System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-13s ║ %-19s ║ %-31s ║ %-15s ║\n",
+                    i + 1,
+                    bioMahasiswa[i][0],
+                    bioMahasiswa[i][1],
+                    bioMahasiswa[i][2],
+                    bioMahasiswa[i][3],
+                    bioMahasiswa[i][4],
+                    bioMahasiswa[i][5]);
+            }
         }
 
         System.out.println(
@@ -759,10 +837,9 @@ public class NewMain {
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println(
-                "║                                                  BIODATA                                                                          ║");
+                "║                                                 EDIT BIODATA                                                                      ║");
         System.out.println(
                 "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-        System.out.println("");
 
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -800,6 +877,12 @@ public class NewMain {
 
     // Fungsi Kirim Pesan
     static void kirimPesan() {
+            System.out.println(
+                "╔══════════════════════════════════════════════════════════╗");
+            System.out.println(
+                "║                      SEND MESSAGE                        ║");
+            System.out.println(
+                "╚══════════════════════════════════════════════════════════╝");
 
         boolean validMahasiswa = false;
 
@@ -823,6 +906,12 @@ public class NewMain {
 
     // Fungsi Penerima Pesan
     static void penerimaPesan(String pesan, String penerima) {
+        System.out.println(
+                "╔══════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                         MESSAGE                          ║");
+        System.out.println(
+                "╚══════════════════════════════════════════════════════════╝");
         System.out.println("Pesan diterima oleh: " + penerima);
         System.out.println("Dari: Admin");
         System.out.println("Isi Pesan: " + pesan);
@@ -864,15 +953,14 @@ public class NewMain {
         System.out.println(
                 "╔══════════════════════════════════════════════════════════╗");
         System.out.println(
-                "║                         Presensi                         ║");
+                "║                         PRESENSI                         ║");
         System.out.println(
                 "╚══════════════════════════════════════════════════════════╝");
-        System.out.println();
 
-        System.out.println("════════════════════════════════════════════════════════════");
+        System.out.println("╔══════════════════════════════════════════════════════════╗");
         System.out.printf(
                 "║ %-2s ║ %-21s ║ %-18s ║ %-6s ║\n", "No", "Nama", "Keterangan Hadir", "Kelas");
-        System.out.println("════════════════════════════════════════════════════════════");
+        System.out.println("╚══════════════════════════════════════════════════════════╝");
         for (int i = 0; i < dataPresensi.length; i++) {
             System.out.printf(
                     "║ %-2s ║ %-21s ║ %-18s ║ %-6s ║\n",
@@ -890,17 +978,15 @@ public class NewMain {
         System.out.println(
                 "╔══════════════════════════════════════════════════════════╗");
         System.out.println(
-                "║                      Hasil Presensi                      ║");
+                "║                      HASIL PRESENSI                      ║");
         System.out.println(
                 "╚══════════════════════════════════════════════════════════╝");
-        System.out.println();
 
         System.out.println("╔══════════════════════════════════════════════════════════╗");
         System.out.printf(
                 "║ %-2s ║ %-21s ║ %-18s ║ %-6s ║\n", "No", "Nama", "Keterangan Hadir", "Kelas");
         System.out.println("╚══════════════════════════════════════════════════════════╝");
         for (int i = 0; i < dataPresensi.length; i++) {
-            System.out.println("════════════════════════════════════════════════════════════");
             System.out.printf(
                     "║ %-2s ║ %-21s ║ %-18s ║ %-6s ║\n",
                     i + 1, dataPresensi[i][0], dataPresensi[i][2], dataPresensi[i][1]);
@@ -943,9 +1029,14 @@ public class NewMain {
 
     // Fungsi jadwal mahasiswa
     static void jadwalMahasiswa() {
-        System.out.println("\t\t\t\t      ╔══════════════════════════════════════╗\n" +
-                "\t\t\t\t      ║             JADWAL KULIAH            ║\n" +
-                "\t\t\t\t      ╚══════════════════════════════════════╝");
+        
+        if (isRole.equals("Mahasiswa")) {
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                            JADWAL MAHASISWA                                                     ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
 
         System.out.println(
                 "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -959,10 +1050,39 @@ public class NewMain {
             System.out.println(
                     "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
+        }
+        
+        if (isRole.equals("Admin")) {
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                         EDIT JADWAL MAHASISWA                                                   ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║ No ║  Hari  ║      Jam      ║   Kode MK   ║     Mata Kuliah     ║                     Dosen                     ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        for (String[] data : jadwalMatkul) {
+            System.out.printf("║ %-2s ║ %-6s ║ %-11s ║ %-11s ║ %-19s ║ %-45s ║\n", data[0], data[1], data[2], data[3],
+                    data[4], data[5]);
+            System.out.println(
+                    "═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        }
+        }
     }
 
     // Fungsi lihat KRS
     static void lihatKRS() {
+        System.out.println(
+                "╔═════════════════════════════════════════════╗");
+        System.out.println(
+                "║            KARTU RENCANA STUDI              ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════╝");
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
         System.out.println("╚═════════════════════════════════════════════╝");
@@ -979,6 +1099,12 @@ public class NewMain {
         boolean continueEditing = true;
 
         while (continueEditing) {
+            System.out.println(
+                "╔═════════════════════════════════════════════╗");
+            System.out.println(
+                "║          EDIT KARTU RENCANA STUDI           ║");
+            System.out.println(
+                "╚═════════════════════════════════════════════╝");
             System.out.println("╔═════════════════════════════════════════════╗");
             System.out.println("║ Matkul           ║  Semester  ║  SKS  ║ Jam ║");
             System.out.println("╚═════════════════════════════════════════════╝");
@@ -1004,23 +1130,29 @@ public class NewMain {
         }
     }
 
-    // Fungsi input KRS
+    // Fungsi Edit KRS
     static void inputKRS(int index) {
         Scanner sc = new Scanner(System.in);
         if (index < 0 || index >= matkulData.length) {
             System.out.println("Indeks tidak valid.");
             return;
         }
+        System.out.println(
+                "╔═════════════════════════════════════════════╗");
+        System.out.println(
+                "║          EDIT KARTU RENCANA STUDI           ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════╝");
 
-        System.out.println("Masukkan informasi baru untuk mahasiswa:");
+        System.out.println("Masukkan data KRS untuk mahasiswa:");
 
-        System.out.print("Matkul ke-" + (index + 1) + ":");
+        System.out.print("Matkul ke-" + (index + 1) + ": ");
         matkulData[index][0] = sc.nextLine();
-        System.out.print("Semester:");
+        System.out.print("Semester: ");
         matkulData[index][1] = sc.nextLine();
-        System.out.print("SKS:");
+        System.out.print("SKS: ");
         matkulData[index][2] = sc.nextLine();
-        System.out.print("Jam:");
+        System.out.print("Jam: ");
         matkulData[index][3] = sc.nextLine();
 
         System.out.println("╔═════════════════════════════════════════════╗");
@@ -1048,6 +1180,22 @@ public class NewMain {
 
     // Fungsi input UKT
     static void inputUKT() {
+        System.out.println(
+                "╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                             INPUT UKT MAHASISWA                                ║");
+        System.out.println(
+                "╚════════════════════════════════════════════════════════════════════════════════╝");
+        
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║ NO | TAHUN AKADEMIK | KETERANGAN |     TAGIHAN     |     TERBAYAR     | STATUS ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+
+        for (String[] data : dataUKT) {
+            System.out.printf("║ %-2s | %-14s | %-10s | Rp. %-15s | Rp. %-12s | %-6s ║\n",
+                    "1", data[1], data[2], data[3], data[4], data[5]);
+            System.out.println("══════════════════════════════════════════════════════════════════════════════════");
+        }
 
         for (int i = 0; i < dataUKT.length; i++) {
             System.out.println("No. " + (i + 1));
@@ -1066,12 +1214,18 @@ public class NewMain {
 
     // Fungsi print UKT
     static void printUKT(String[][] dataUKT) {
+        System.out.println(
+                "╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println(
+                "║                                 UKT MAHASISWA                                  ║");
+        System.out.println(
+                "╚════════════════════════════════════════════════════════════════════════════════╝");
         System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
         System.out.println("║ NO | TAHUN AKADEMIK | KETERANGAN |     TAGIHAN     |     TERBAYAR     | STATUS ║");
         System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
 
         for (String[] data : dataUKT) {
-            System.out.printf("║ %-2s | %-14s | %-10s | %-15s | Rp. %-12s | %-6s ║\n",
+            System.out.printf("║ %-2s | %-14s | %-10s | Rp. %-15s | Rp. %-12s | %-6s ║\n",
                     "1", data[1], data[2], data[3], data[4], data[5]);
             System.out.println("══════════════════════════════════════════════════════════════════════════════════");
         }
