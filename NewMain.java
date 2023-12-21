@@ -1187,7 +1187,7 @@ public class NewMain {
 
         System.out.println(
                 "════════════════════════════════════════════════════════════════════════");
-        System.out.println("Informasi KRS telah diperbarui.");
+        System.out.println("Informasi KRS telah drata2erbarui.");
     }
 
     // Fungsi cari data KRS
