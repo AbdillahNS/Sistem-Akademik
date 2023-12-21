@@ -325,8 +325,6 @@ public class NewMain {
                     case 8:
                         kelasMahasiswa();
                         break;
-                        editKRS();
-                        break;
                     case 9:
                         gantiAkun();
                         break;
