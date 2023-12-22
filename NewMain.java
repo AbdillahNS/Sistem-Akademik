@@ -76,9 +76,9 @@ public class NewMain {
     };
 
     static String[][] dataPresensi = {
-            { "Abdillah Noer Said", "TI-1B", "" },
-            { "Reika Amalia Syaputri", "TI-1B", "" },
-            { "Saka Nabil", "TI-1B", "" }
+            { "Abdillah Noer Said", "TI-1B", "", "2341720018" },
+            { "Reika Amalia Syaputri", "TI-1B", "", "2341720173" },
+            { "Saka Nabil", "TI-1B", "", "2341720108" }
     };
 
     public static void main(String[] args) {
@@ -151,6 +151,7 @@ public class NewMain {
                 System.out.println("5. Kirim Pesan");
                 System.out.println("6. Edit Jadwal");
                 System.out.println("7. Edit KRS");
+                System.out.println("8. Penempatan Kelas");
                 System.out.println(Blue + "9. Ganti Akun" + Reset);
                 System.out.println(Red + "0. Keluar" + Reset);
                 System.out.println();
@@ -174,6 +175,7 @@ public class NewMain {
                 System.out.println("4. Melihat Nilai");
                 System.out.println("5. Presensi");
                 System.out.println("6. Message");
+                System.out.println("7. Kelas Mahasiswa");
                 System.out.println(Blue + "9. Ganti Akun" + Reset);
                 System.out.println(Red + "0. Keluar" + Reset);
                 System.out.println();
@@ -313,9 +315,16 @@ public class NewMain {
                         break;
 
                     case 7:
-                        editKRS();
+                        if (isRole.equals("Admin")) {
+                            editKRS();
+                            break;
+                        } else if (isRole.equals("Mahasiswa")) {
+                            kelasMahasiswa();
+                            break;
+                        }
+                    case 8:
+                        kelasMahasiswa();
                         break;
-
                     case 9:
                         gantiAkun();
                         break;
@@ -340,7 +349,7 @@ public class NewMain {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Masukkan data untuk baris baru:");
 
-        String kolom[] = { "Nama", "NIM", "Jenis kelamin", "Agama", "Tempat, Tanggal lahir", "No HP" };
+        String kolom[] = { "Nama", "NIP", "Jenis kelamin", "Agama", "Tempat, Tanggal lahir", "No HP" };
 
         String[] newEntry = new String[bioDosen[0].length];
         for (int i = 0; i < newEntry.length; i++) {
@@ -568,7 +577,7 @@ public class NewMain {
 
             System.out.println(
                     "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-            System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-11s ║ %-19s ║ %-20s ║ %-15s ║\n", "No", "Nama", "NIM",
+            System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-11s ║ %-19s ║ %-20s ║ %-15s ║\n", "No", "Nama", "NIP",
                     "Jenis Kelamin", "Agama", "TTL", "No HP");
             System.out.println(
                     "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -656,7 +665,7 @@ public class NewMain {
         System.out.print("Nama: ");
         bioDosen[index][0] = sc.next();
 
-        System.out.print("NIM: ");
+        System.out.print("NIP: ");
         bioDosen[index][1] = sc.next();
 
         System.out.print("Jenis Kelamin: ");
@@ -680,7 +689,7 @@ public class NewMain {
 
         System.out.println(
                 "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-11s ║ %-19s ║ %-20s ║ %-15s ║\n", "No", "Nama", "NIM",
+        System.out.printf("║ %-2s ║ %-33s ║ %-20s ║ %-11s ║ %-19s ║ %-20s ║ %-15s ║\n", "No", "Nama", "NIP",
                 "Jenis Kelamin", "Agama", "TTL", "No HP");
         System.out.println(
                 "╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
@@ -781,12 +790,12 @@ public class NewMain {
             int menu = sc1.nextInt();
             switch (menu) {
                 case 1:
-                    System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
+                    System.out.print("Masukkan nomor mahasiswa yang ingin diedit : ");
                     int indexEdit = sc1.nextInt() - 1;
                     editBioMahasiswa(indexEdit);
                     break;
                 case 2:
-                    System.out.print("Masukkan nomor nahasiswa yang ingin dihapus : ");
+                    System.out.print("Masukkan nomor mahasiswa yang ingin dihapus : ");
                     int indexHapus = sc1.nextInt() - 1;
                     hapusElemen(indexHapus);
                     break;
@@ -1221,5 +1230,113 @@ public class NewMain {
                 System.out.println("Akun tidak ditemukan!");
             }
         }
+    }
+
+    static void kelasMahasiswa() {
+        if (isRole.equals("Admin")) {
+            System.out.println(
+                    "╔═════════════════════════════════════════════════╗");
+            System.out.println(
+                    "║               EDIT KELAS MAHASISWA              ║");
+            System.out.println(
+                    "╚═════════════════════════════════════════════════╝");
+
+            System.out.println(
+                    "╔═════════════════════════════════════════════════╗");
+            System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-5s ║\n", "No", "Nama", "NIM", "Kelas");
+            System.out.println(
+                    "╚═════════════════════════════════════════════════╝");
+
+            for (int i = 0; i < dataPresensi.length; i++) {
+                System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-5s ║\n",
+                        i + 1,
+                        dataPresensi[i][0],
+                        dataPresensi[i][3],
+                        dataPresensi[i][1]);
+                System.out.println(
+                        "═══════════════════════════════════════════════════");
+            }
+        }
+        if (isRole.equals("Mahasiswa")) {
+            System.out.println(
+                    "╔═════════════════════════════════════════════════╗");
+            System.out.println(
+                    "║                  KELAS MAHASISWA                ║");
+            System.out.println(
+                    "╚═════════════════════════════════════════════════╝");
+
+            System.out.println(
+                    "╔═════════════════════════════════════════════════╗");
+            System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-5s ║\n", "No", "Nama", "NIM", "Kelas");
+            System.out.println(
+                    "╚═════════════════════════════════════════════════╝");
+
+            for (int i = 0; i < dataPresensi.length; i++) {
+                System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-5s ║\n",
+                        i + 1,
+                        dataPresensi[i][0],
+                        dataPresensi[i][3],
+                        dataPresensi[i][1]);
+                System.out.println(
+                        "═══════════════════════════════════════════════════");
+            }
+        }
+        System.out.println(
+                "═══════════════════════════════════════════════════");
+        if (isRole.equals("Admin")) {
+            Scanner sc1 = new Scanner(System.in);
+            System.out.println("Pilih tindakan");
+            System.out.println("1. Edit Kelas Mahasiswa");
+            System.out.println("0. Keluar");
+            System.out.print("\tPilih menu : => ");
+            int menu = sc1.nextInt();
+            switch (menu) {
+                case 1:
+                    System.out.print("Masukkan nomor nahasiswa yang ingin diedit : ");
+                    int indexEdit = sc1.nextInt() - 1;
+                    editkelasMahasiswa(indexEdit);
+            }
+        }
+    }
+
+    static void editkelasMahasiswa(int index) {
+
+        if (index < 0 || index >= dataPresensi.length) {
+            System.out.println("Indeks tidak valid.");
+            return;
+        }
+
+        System.out.println("Masukkan informasi kelas baru untuk mahasiswa:");
+
+        System.out.print("Masukkan Kelas: ");
+        dataPresensi[index][1] = sc.next();
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════╗");
+        System.out.println(
+                "║               EDIT KELAS MAHASISWA              ║");
+        System.out.println(
+                "╚═════════════════════════════════════════════════╝");
+
+        System.out.println(
+                "╔═════════════════════════════════════════════════╗");
+        System.out.printf("║ %-2s ║ %-21s ║ %-10s ║ %-5s ║\n", "No", "Nama", "NIM", "Kelas");
+        System.out.println(
+                "╚═════════════════════════════════════════════════╝");
+
+        for (int i = 0; i < dataPresensi.length; i++) {
+            System.out.printf("║ %-2s ║ %-21s ║ %-6s ║ %-5s ║\n",
+                    i + 1,
+                    dataPresensi[i][0],
+                    dataPresensi[i][3],
+                    dataPresensi[i][1]);
+            System.out.println(
+                    "═══════════════════════════════════════════════════");
+        }
+
+        System.out.println(
+                "═══════════════════════════════════════════════════");
+
+        System.out.println("Data kelas telah diperbarui.");
     }
 }
