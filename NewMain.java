@@ -663,22 +663,22 @@ public class NewMain {
 
         // Menerima input baru untuk setiap data dosen
         System.out.print("Nama: ");
-        bioDosen[index][0] = sc.next();
+        bioDosen[index][0] = sc.nextLine();
 
         System.out.print("NIP: ");
-        bioDosen[index][1] = sc.next();
+        bioDosen[index][1] = sc.nextLine();
 
         System.out.print("Jenis Kelamin: ");
-        bioDosen[index][2] = sc.next();
+        bioDosen[index][2] = sc.nextLine();
 
         System.out.print("Agama: ");
-        bioDosen[index][3] = sc.next();
+        bioDosen[index][3] = sc.nextLine();
 
         System.out.print("TTL: ");
-        bioDosen[index][4] = sc.next();
+        bioDosen[index][4] = sc.nextLine();
 
         System.out.print("Nomor HP: ");
-        bioDosen[index][5] = sc.next();
+        bioDosen[index][5] = sc.nextLine();
 
         System.out.println(
                 "╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
@@ -820,22 +820,22 @@ public class NewMain {
 
         // Menerima input baru untuk setiap data mahasiswa
         System.out.print("Nama: ");
-        bioMahasiswa[index][0] = sc.next();
+        bioMahasiswa[index][0] = sc.nextLine();
 
         System.out.print("NIM: ");
-        bioMahasiswa[index][1] = sc.next();
+        bioMahasiswa[index][1] = sc.nextLine();
 
         System.out.print("Jenis Kelamin: ");
-        bioMahasiswa[index][2] = sc.next();
+        bioMahasiswa[index][2] = sc.nextLine();
 
         System.out.print("Agama: ");
-        bioMahasiswa[index][3] = sc.next();
+        bioMahasiswa[index][3] = sc.nextLine();
 
         System.out.print("TTL: ");
-        bioMahasiswa[index][4] = sc.next();
+        bioMahasiswa[index][4] = sc.nextLine();
 
         System.out.print("Nomor HP: ");
-        bioMahasiswa[index][5] = sc.next();
+        bioMahasiswa[index][5] = sc.nextLine();
 
         System.out.println(
                 "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
